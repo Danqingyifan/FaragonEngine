@@ -1,0 +1,3 @@
+[submodule "FaragonEngine/vendor/spdlog"]
+	path = FaragonEngine/vendor/spdlog
+	url = https://github.com/gabime/spdlog
