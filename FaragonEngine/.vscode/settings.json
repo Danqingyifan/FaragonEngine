@@ -1,0 +1,7 @@
+{
+    "cmake.sourceDirectory": "F:/WorkSpace/FaragonEngine/FaragonEngine/vendor/spdlog",
+    "files.associations": {
+        "system_error": "cpp",
+        "xlocale": "cpp"
+    }
+}

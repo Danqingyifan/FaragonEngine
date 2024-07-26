@@ -21,6 +21,7 @@ project "FaragonEngine"
 
    includedirs
    {
+      "FaragonEngine/src",
       "%{prj.name}/vendor/spdlog/include"
    }
 

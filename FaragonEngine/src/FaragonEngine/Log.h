@@ -1,8 +1,10 @@
-#pragma once
 
+#pragma once
 #include "Core.h"
-#include <memory>
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
+
+#include <memory>
 
 namespace FaragonEngine
 {
@@ -28,7 +30,7 @@ namespace FaragonEngine
 #define FA_CORE_TRACE(...)	::FaragonEngine::Log::GetCoreLogger()->trace(__VA_ARGS__)
 
 // Client log macros									 
-#define FA_Client_ERROR(...)	::FaragonEngine::Log::GetClientLogger()->error(__VA_ARGS__)
-#define FA_Client_WARN(...)		::FaragonEngine::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define FA_Client_INFO(...)		::FaragonEngine::Log::GetClientLogger()->info(__VA_ARGS__)
-#define FA_Client_TRACE(...)	::FaragonEngine::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define FA_CLIENT_ERROR(...)	::FaragonEngine::Log::GetClientLogger()->error(__VA_ARGS__)
+#define FA_CLIENT_WARN(...)		::FaragonEngine::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define FA_CLIENT_INFO(...)		::FaragonEngine::Log::GetClientLogger()->info(__VA_ARGS__)
+#define FA_CLIENT_TRACE(...)	::FaragonEngine::Log::GetClientLogger()->trace(__VA_ARGS__)

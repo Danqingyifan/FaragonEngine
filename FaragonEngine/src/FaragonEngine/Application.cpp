@@ -1,5 +1,10 @@
 #include "Application.h"
 
+#include "FaragonEngine/Events/ApplicationEvent.h"
+#include "FaragonEngine/Log.h"
+
+#include <iostream>
+
 namespace FaragonEngine
 {
     Application::Application()
@@ -12,6 +17,9 @@ namespace FaragonEngine
     }
     void Application::Run()
     {
+        WindowResizeEvent e(1280, 720);
+        std::cout << e.ToString();
+
         while (true)
         {
 

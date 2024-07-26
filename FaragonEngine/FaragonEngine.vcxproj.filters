@@ -4,6 +4,9 @@
     <Filter Include="FaragonEngine">
       <UniqueIdentifier>{99A78FA3-0568-0BDA-CEA2-54573A2250B6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FaragonEngine\Events">
+      <UniqueIdentifier>{5DAD5B1D-493C-E5E6-F25A-F9E1DEC8F58C}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\FaragonEngine.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\FaragonEngine\EntryPoint.h">
       <Filter>FaragonEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Events\ApplicationEvent.h">
+      <Filter>FaragonEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Events\Event.h">
+      <Filter>FaragonEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Events\KeyEvent.h">
+      <Filter>FaragonEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Events\MouseEvent.h">
+      <Filter>FaragonEngine\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\FaragonEngine\Log.h">
       <Filter>FaragonEngine</Filter>
