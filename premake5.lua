@@ -13,6 +13,9 @@ project "FaragonEngine"
    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
    objdir ("bin-intermediate/" .. outputdir .. "/%{prj.name}")
 
+    pchheader "FaragonPCH.h"
+    pchsource "FaragonEngine/src/FaragonPCH.cpp"
+
    files
    {
       "%{prj.name}/src/**.h",

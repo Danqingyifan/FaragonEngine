@@ -3,8 +3,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace FaragonEngine
 {
 	class FARAGON_API ApplicationEvent : public Event

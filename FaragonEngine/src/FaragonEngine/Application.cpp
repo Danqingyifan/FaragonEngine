@@ -1,9 +1,8 @@
-#include "Application.h"
+#include "FaragonPCH.h"
 
+#include "Application.h"
 #include "FaragonEngine/Events/ApplicationEvent.h"
 #include "FaragonEngine/Log.h"
-
-#include <iostream>
 
 namespace FaragonEngine
 {

@@ -1,9 +1,8 @@
 #pragma once
+#include "FaragonPCH.h"
 
 #include "FaragonEngine/Core.h"
 
-#include <string>
-#include <functional>
 
 namespace FaragonEngine
 {
