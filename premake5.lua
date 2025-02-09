@@ -9,9 +9,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludedDir = {}
 IncludedDir["GLFW"] = "FaragonEngine/vendor/GLFW/include"
 IncludedDir["Glad"] = "FaragonEngine/vendor/Glad/include"
+IncludedDir["ImGui"] = "FaragonEngine/vendor/imgui"
 
 include "FaragonEngine/vendor/GLFW"
 include "FaragonEngine/vendor/Glad"
+include "FaragonEngine/vendor/imgui"
+
 
 project "FaragonEngine"
    location "FaragonEngine"
@@ -35,13 +38,15 @@ project "FaragonEngine"
       "FaragonEngine/src",
       "%{prj.name}/vendor/spdlog/include",
       "%{IncludedDir.GLFW}",
-      "%{IncludedDir.Glad}"
+      "%{IncludedDir.Glad}",
+      "%{IncludedDir.ImGui}"
    }
 
    links
    {
        "GLFW",
        "Glad",
+       "ImGui",
        "opengl32.lib"
    }  
    filter "system:windows"
