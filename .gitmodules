@@ -4,3 +4,6 @@
 [submodule "FaragonEngine/vendor/GLFW"]
 	path = FaragonEngine/vendor/GLFW
 	url = https://github.com/glfw/glfw
+[submodule "FaragonEngine/vendor/imgui"]
+	path = FaragonEngine/vendor/imgui
+	url = https://github.com/Danqingyifan/imgui
