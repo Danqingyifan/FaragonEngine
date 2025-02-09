@@ -14,7 +14,6 @@ namespace FaragonEngine
 
 		EVENT_CLASS_CATEGORY(EventCategory::EventCategoryKeyboard | EventCategory::EventCategoryInput)
 	protected:
-		KeyEvent(int keyCode) : m_KeyCode(keyCode) {}
 		int m_KeyCode;
 	};
 	
@@ -34,7 +33,7 @@ namespace FaragonEngine
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(EventType::KeyPressed)
+		EVENT_CLASS_TYPE(KeyPressed)
 
 	private:
 		bool m_Repeat;
@@ -53,7 +52,8 @@ namespace FaragonEngine
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(EventType::KeyReleased)
+		EVENT_CLASS_TYPE(KeyReleased)
 	};
+
 
 }

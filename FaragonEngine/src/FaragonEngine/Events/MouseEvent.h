@@ -47,4 +47,32 @@ namespace FaragonEngine
 	private:
 		float m_XOffset, m_YOffset;
 	};
+
+	class FARAGON_API MouseButtonPressedEvent : public MouseEvent
+	{
+	public:
+
+		MouseButtonPressedEvent(int button) :MouseEvent(EventType::MouseButtonPressed), m_Button(button) {}
+
+		int GetButton() const { return m_Button; }
+
+		EVENT_CLASS_TYPE(MouseButtonPressed);
+
+	private:
+		int m_Button;
+	};
+
+	class FARAGON_API MouseButtonReleasedEvent : public MouseEvent
+	{
+	public:
+
+		MouseButtonReleasedEvent(int button) :MouseEvent(EventType::MouseButtonReleased), m_Button(button) {}
+
+		int GetButton() const { return m_Button; }
+
+		EVENT_CLASS_TYPE(MouseButtonReleased);
+
+	private:
+		int m_Button;
+	};
 }
