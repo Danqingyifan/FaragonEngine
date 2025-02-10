@@ -7,6 +7,9 @@
     <Filter Include="FaragonEngine\Events">
       <UniqueIdentifier>{5DAD5B1D-493C-E5E6-F25A-F9E1DEC8F58C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FaragonEngine\ImGui">
+      <UniqueIdentifier>{83AB0785-EF0C-E592-787A-2B45E4DA1B52}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
@@ -40,6 +43,9 @@
     <ClInclude Include="src\FaragonEngine\Events\WindowEvent.h">
       <Filter>FaragonEngine\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\FaragonEngine\ImGui\ImGuiLayer.h">
+      <Filter>FaragonEngine\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\FaragonEngine\Layer.h">
       <Filter>FaragonEngine</Filter>
     </ClInclude>
@@ -63,6 +69,9 @@
     </ClCompile>
     <ClCompile Include="src\FaragonEngine\Events\Event.cpp">
       <Filter>FaragonEngine\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FaragonEngine\ImGui\ImGuiLayer.cpp">
+      <Filter>FaragonEngine\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\FaragonEngine\Layer.cpp">
       <Filter>FaragonEngine</Filter>

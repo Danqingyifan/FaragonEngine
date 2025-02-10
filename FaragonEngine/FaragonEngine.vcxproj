@@ -164,6 +164,7 @@
     <ClInclude Include="src\FaragonEngine\Events\KeyEvent.h" />
     <ClInclude Include="src\FaragonEngine\Events\MouseEvent.h" />
     <ClInclude Include="src\FaragonEngine\Events\WindowEvent.h" />
+    <ClInclude Include="src\FaragonEngine\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\FaragonEngine\Layer.h" />
     <ClInclude Include="src\FaragonEngine\LayerStack.h" />
     <ClInclude Include="src\FaragonEngine\Log.h" />
@@ -174,6 +175,7 @@
   <ItemGroup>
     <ClCompile Include="src\FaragonEngine\Application.cpp" />
     <ClCompile Include="src\FaragonEngine\Events\Event.cpp" />
+    <ClCompile Include="src\FaragonEngine\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\FaragonEngine\Layer.cpp" />
     <ClCompile Include="src\FaragonEngine\LayerStack.cpp" />
     <ClCompile Include="src\FaragonEngine\Log.cpp" />
