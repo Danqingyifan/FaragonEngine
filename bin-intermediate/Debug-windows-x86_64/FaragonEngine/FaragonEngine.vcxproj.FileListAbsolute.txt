@@ -1,2 +1,0 @@
-F:\WorkSpace\FaragonEngine\bin-intermediate\Debug-windows-x86_64\FaragonEngine\FaragonEngine.vcxproj.CopyComplete
-I:\WorkSpace\FaragonEngine\bin-intermediate\Debug-windows-x86_64\FaragonEngine\FaragonEngine.vcxproj.CopyComplete
