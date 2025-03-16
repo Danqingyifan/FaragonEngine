@@ -1,19 +1,34 @@
 #pragma once
 #include "FaragonEngine/Layer.h"
+
+#include "FaragonEngine/Events/KeyEvent.h"
+#include "FaragonEngine/Events/MouseEvent.h"
+#include "FaragonEngine/Events/WindowEvent.h"
+
 namespace FaragonEngine
 {
-    class FARAGON_API ImGuiLayer : public Layer
-    {
-    public:
-        ImGuiLayer();
-        ~ImGuiLayer();
+	class FARAGON_API ImGuiLayer : public Layer
+	{
+	public:
+		ImGuiLayer();
+		~ImGuiLayer();
 
-        void OnAttach() override;
-        void OnDetach() override;
-        void OnUpdate() override;
-        void OnEvent(Event &event) override;
+		void OnAttach() override;
+		void OnDetach() override;
+		void OnUpdate() override;
+		void OnEvent(Event& event) override;
+	private:
+		bool  OnMouseButtonPressedEvent(MouseButtonPressedEvent& event);
+		bool  OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& event);
+		bool  OnMouseMovedEvent(MouseMovedEvent& event);
+		bool  OnMouseScrolledEvent(MouseScrolledEvent& event);
+		bool  OnKeyPressedEvent(KeyPressedEvent& event);
+		bool  OnKeyReleasedEvent(KeyReleasedEvent& event);
+		bool  OnKeyTypedEvent(KeyTypedEvent& event);
+		bool  OnWindowResizeEvent(WindowResizeEvent& event);
 
-    private:
-        float m_Time = 0.0f;
-    };
+		enum ImGuiKey MapKeyToImGuiKey(int keycode,int scancode = 0);
+	private:
+		float m_Time = 0.0f;
+	};
 }

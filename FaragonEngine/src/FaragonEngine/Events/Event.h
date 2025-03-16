@@ -9,7 +9,7 @@ namespace FaragonEngine
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved, //Window
 		AppTick, AppUpdate, AppRender, // Application
-		KeyPressed, KeyReleased, // Key
+		KeyPressed, KeyReleased, KeyTyped, // Key
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled // Mouse
 	};
 
@@ -30,7 +30,7 @@ namespace FaragonEngine
 #define  EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
 	class FARAGON_API Event
-	{ 
+	{
 		friend class EventDispatcher;
 	public:
 		virtual EventType GetEventType() const = 0;

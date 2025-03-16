@@ -2,6 +2,7 @@
 workspace "FaragonEngine"
    architecture "x64"
    configurations { "Debug", "Release", "Dist" }
+   startproject "Sandbox"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
@@ -20,6 +21,7 @@ project "FaragonEngine"
    location "FaragonEngine"
    kind "SharedLib"
    language "C++"
+   staticruntime "Off"
 
    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
    objdir ("bin-intermediate/" .. outputdir .. "/%{prj.name}")
@@ -51,14 +53,13 @@ project "FaragonEngine"
    }  
    filter "system:windows"
    cppdialect "C++20"
-   staticruntime "On"
    systemversion "latest"
 
       defines
       {
          "FA_PLATFORM_WINDOWS",
          "FA_BUILD_DLL",
-         "GLFW_INCLUDE_NONE"
+         "GLFW_INCLUDE_NONE",
       }
 
       postbuildcommands
@@ -68,17 +69,17 @@ project "FaragonEngine"
 
    filter "configurations:Debug"
       defines "FA_DEBUG"
-      buildoptions "/MDd"
+      runtime "Debug"
       symbols "On"
 
    filter "configurations:Release"
       defines "FA_RELEASE"
-      buildoptions "/MD"
+      runtime "Release"
       optimize "On"
 
    filter "configurations:Dist"
       defines "FA_DIST"
-      buildoptions "/MD"
+      runtime "Release"
       optimize "On"
 
 
@@ -86,6 +87,8 @@ project "Sandbox"
    location "Sandbox"
    kind "ConsoleApp"
    language "C++"
+   staticruntime "Off"
+
 
    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
    objdir ("bin-intermediate/" .. outputdir .. "/%{prj.name}")
@@ -119,12 +122,15 @@ project "Sandbox"
 
    filter "configurations:Debug"
       defines "FA_DEBUG"
+      runtime "Debug"
       symbols "On"
 
    filter "configurations:Release"
       defines "FA_RELEASE"
+      runtime "Release"
       optimize "On"
 
    filter "configurations:Dist"
       defines "FA_DIST"
+      runtime "Release"
       optimize "On"
