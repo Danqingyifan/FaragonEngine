@@ -1,22 +1,22 @@
 #include <iostream>
 #include <FaragonEngine.h>
-
 class ExampleLayer : public FaragonEngine::Layer
 {
 public:
-    ExampleLayer() : Layer("Example")
+    ExampleLayer()
+        : Layer("Example")
     {
 
     }
 
     void OnUpdate() override
     {
-        FA_INFO("ExampleLayer::OnUpdate");
+        std::cout << "ExampleLayer::OnUpdate" << std::endl;
     }
 
     void OnEvent(FaragonEngine::Event& event) override
     {
-        FA_INFO("ExampleLayer::OnEvent");
+        std::cout << "ExampleLayer::OnEvent" << std::endl;
     }
 };
 
@@ -26,6 +26,7 @@ public:
     Sandbox()
     {
         PushLayer(new ExampleLayer());
+        PushOverlay(new FaragonEngine::ImGuiLayer());
     }
     ~Sandbox()
     {
@@ -36,7 +37,9 @@ public:
 
 FaragonEngine::Application* FaragonEngine::CreateApplication()
 {
+
     return new Sandbox();
 }
+
 
 
