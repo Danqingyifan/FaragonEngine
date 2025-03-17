@@ -4,8 +4,14 @@
 #include "FaragonEngine/Core.h"
 #include "FaragonEngine/Application.h"
 #include "FaragonEngine/Log.h"
+
 #include "FaragonEngine/Layer.h"
 #include "FaragonEngine/ImGui/ImGuiLayer.h"
+
+#include "FaragonEngine/Input.h"
+#include "FaragonEngine/KeyCodes.h"
+#include "FaragonEngine/MouseButtonCodes.h"
+
 
 // -----------Entry Point--------------
 

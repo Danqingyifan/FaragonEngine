@@ -163,9 +163,11 @@
     <ClInclude Include="src\FaragonEngine\Events\WindowEvent.h" />
     <ClInclude Include="src\FaragonEngine\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\FaragonEngine\Input.h" />
+    <ClInclude Include="src\FaragonEngine\KeyCodes.h" />
     <ClInclude Include="src\FaragonEngine\Layer.h" />
     <ClInclude Include="src\FaragonEngine\LayerStack.h" />
     <ClInclude Include="src\FaragonEngine\Log.h" />
+    <ClInclude Include="src\FaragonEngine\MouseButtonCodes.h" />
     <ClInclude Include="src\FaragonEngine\Window.h" />
     <ClInclude Include="src\FaragonPCH.h" />
     <ClInclude Include="src\Platform\OpenGL\imgui_impl_glfw.h" />

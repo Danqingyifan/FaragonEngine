@@ -76,6 +76,8 @@
     </ClInclude>
     <ClInclude Include="src\FaragonEngine\Input.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\FaragonEngine\KeyCodes.h" />
+    <ClInclude Include="src\FaragonEngine\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FaragonEngine\Application.cpp">

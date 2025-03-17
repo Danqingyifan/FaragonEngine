@@ -60,9 +60,6 @@ namespace FaragonEngine
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
-			auto [x, y] = Input::GetMousePosition();
-			FA_CORE_INFO("{0}, {1}", x, y);
-
 			m_Window->OnUpdate();
 		}
 	}
