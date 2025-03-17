@@ -1,4 +1,6 @@
 #pragma once
+
+// From glfw3.h
 #define FA_MOUSE_BUTTON_1         0
 #define FA_MOUSE_BUTTON_2         1
 #define FA_MOUSE_BUTTON_3         2

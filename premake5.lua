@@ -11,6 +11,7 @@ IncludedDir = {}
 IncludedDir["GLFW"] = "FaragonEngine/vendor/GLFW/include"
 IncludedDir["Glad"] = "FaragonEngine/vendor/Glad/include"
 IncludedDir["ImGui"] = "FaragonEngine/vendor/imgui"
+IncludedDir["glm"] = "FaragonEngine/vendor/glm"
 
 group "Dependencies"
    include "FaragonEngine/vendor/GLFW"
@@ -33,7 +34,9 @@ project "FaragonEngine"
    files
    {
       "%{prj.name}/src/**.h",
-      "%{prj.name}/src/**.cpp"
+      "%{prj.name}/src/**.cpp",
+      "%{prj.name}/vendor/glm/**.hpp",
+      "%{prj.name}/vendor/glm/**.inl"
    }
 
    includedirs
@@ -42,7 +45,8 @@ project "FaragonEngine"
       "%{prj.name}/vendor/spdlog/include",
       "%{IncludedDir.GLFW}",
       "%{IncludedDir.Glad}",
-      "%{IncludedDir.ImGui}"
+      "%{IncludedDir.ImGui}",
+      "%{IncludedDir.glm}"
    }
 
    links
@@ -103,7 +107,8 @@ project "Sandbox"
    includedirs
    {
       "FaragonEngine/src",
-      "FaragonEngine/vendor/spdlog/include"
+      "FaragonEngine/vendor/spdlog/include",
+      "%{IncludedDir.glm}"
    }
    
    links
