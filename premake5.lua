@@ -12,10 +12,11 @@ IncludedDir["GLFW"] = "FaragonEngine/vendor/GLFW/include"
 IncludedDir["Glad"] = "FaragonEngine/vendor/Glad/include"
 IncludedDir["ImGui"] = "FaragonEngine/vendor/imgui"
 
-include "FaragonEngine/vendor/GLFW"
-include "FaragonEngine/vendor/Glad"
-include "FaragonEngine/vendor/imgui"
-
+group "Dependencies"
+   include "FaragonEngine/vendor/GLFW"
+   include "FaragonEngine/vendor/Glad"
+   include "FaragonEngine/vendor/imgui"
+group ""
 
 project "FaragonEngine"
    location "FaragonEngine"
@@ -64,7 +65,7 @@ project "FaragonEngine"
 
       postbuildcommands
       {
-         ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+         ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox\"")
       }
 
    filter "configurations:Debug"
