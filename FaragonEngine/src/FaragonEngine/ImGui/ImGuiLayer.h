@@ -13,9 +13,13 @@ namespace FaragonEngine
 		ImGuiLayer();
 		~ImGuiLayer();
 
-		void OnAttach() override;
-		void OnDetach() override;
-		void OnUpdate() override;
+		virtual void OnAttach() override;
+		virtual void OnDetach() override;
+		virtual void OnImGuiRender() override;
+		
+		void Begin();
+		void End();
+
 		void OnEvent(Event& event) override;
 	private:
 		bool  OnMouseButtonPressedEvent(MouseButtonPressedEvent& event);

@@ -1,9 +1,14 @@
 #pragma once
 #include "Core.h"
-#include "Events/Event.h"
+
 #include "Window.h"
-#include "LayerStack.h"
+
+#include "Events/Event.h"
 #include "Events/WindowEvent.h"
+
+#include "LayerStack.h"
+
+#include "ImGui/ImGuiLayer.h"
 
 namespace FaragonEngine
 {
@@ -24,6 +29,7 @@ namespace FaragonEngine
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

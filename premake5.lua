@@ -10,6 +10,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludedDir = {}
 IncludedDir["GLFW"] = "FaragonEngine/vendor/GLFW/include"
 IncludedDir["Glad"] = "FaragonEngine/vendor/Glad/include"
+IncludedDir["spdlog"] = "FaragonEngine/vendor/spdlog/include"
 IncludedDir["ImGui"] = "FaragonEngine/vendor/imgui"
 IncludedDir["glm"] = "FaragonEngine/vendor/glm"
 
@@ -28,8 +29,8 @@ project "FaragonEngine"
    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
    objdir ("bin-intermediate/" .. outputdir .. "/%{prj.name}")
 
-    pchheader "FaragonPCH.h"
-    pchsource "FaragonEngine/src/FaragonPCH.cpp"
+   pchheader "FaragonPCH.h"
+   pchsource "FaragonEngine/src/FaragonPCH.cpp"
 
    files
    {
@@ -42,19 +43,19 @@ project "FaragonEngine"
    includedirs
    {
       "FaragonEngine/src",
-      "%{prj.name}/vendor/spdlog/include",
       "%{IncludedDir.GLFW}",
       "%{IncludedDir.Glad}",
       "%{IncludedDir.ImGui}",
-      "%{IncludedDir.glm}"
+      "%{IncludedDir.spdlog}",
+      "%{IncludedDir.glm}",
    }
 
    links
    {
-       "GLFW",
-       "Glad",
-       "ImGui",
-       "opengl32.lib"
+      "GLFW",
+      "Glad",
+      "ImGui",
+      "opengl32.lib"
    }  
    filter "system:windows"
    cppdialect "C++20"
@@ -107,8 +108,8 @@ project "Sandbox"
    includedirs
    {
       "FaragonEngine/src",
-      "FaragonEngine/vendor/spdlog/include",
-      "%{IncludedDir.glm}"
+      "%{IncludedDir.spdlog}",
+      "%{IncludedDir.glm}",
    }
    
    links
