@@ -1,5 +1,7 @@
 #include <FaragonEngine.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public FaragonEngine::Layer
 {
 public:

@@ -108,8 +108,10 @@ project "Sandbox"
    includedirs
    {
       "FaragonEngine/src",
+      "FaragonEngine/vendor",
       "%{IncludedDir.spdlog}",
       "%{IncludedDir.glm}",
+
    }
    
    links
