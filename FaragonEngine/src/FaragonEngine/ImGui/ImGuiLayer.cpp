@@ -37,7 +37,7 @@ namespace FaragonEngine
 
 
 		ImGui::StyleColorsDark();
-		
+
 		// When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
 		ImGuiStyle& style = ImGui::GetStyle();
 		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
@@ -77,7 +77,7 @@ namespace FaragonEngine
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
-		io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
+		io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -170,7 +170,7 @@ namespace FaragonEngine
 	bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& event)
 	{
 		ImGuiIO& io = ImGui::GetIO();
-		io.DisplaySize = ImVec2(event.GetWidth(), event.GetHeight());
+		io.DisplaySize = ImVec2((float)event.GetWidth(), (float)event.GetHeight());
 		io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
 		glViewport(0, 0, event.GetWidth(), event.GetHeight());
 		return false;

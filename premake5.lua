@@ -4,6 +4,7 @@ workspace "FaragonEngine"
    configurations { "Debug", "Release", "Dist" }
    startproject "Sandbox"
 
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder(solution directory)
@@ -22,9 +23,10 @@ group ""
 
 project "FaragonEngine"
    location "FaragonEngine"
-   kind "SharedLib"
+   kind "StaticLib"
    language "C++"
-   staticruntime "Off"
+   cppdialect "C++20"
+   staticruntime "on"
 
    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
    objdir ("bin-intermediate/" .. outputdir .. "/%{prj.name}")
@@ -38,6 +40,11 @@ project "FaragonEngine"
       "%{prj.name}/src/**.cpp",
       "%{prj.name}/vendor/glm/**.hpp",
       "%{prj.name}/vendor/glm/**.inl"
+   }
+
+   defines
+   {
+      "_CRT_SECURE_NO_WARNINGS"
    }
 
    includedirs
@@ -58,7 +65,6 @@ project "FaragonEngine"
       "opengl32.lib"
    }  
    filter "system:windows"
-   cppdialect "C++20"
    systemversion "latest"
 
       defines
@@ -68,33 +74,28 @@ project "FaragonEngine"
          "GLFW_INCLUDE_NONE",
       }
 
-      postbuildcommands
-      {
-         ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox\"")
-      }
-
    filter "configurations:Debug"
       defines "FA_DEBUG"
       runtime "Debug"
-      symbols "On"
+      symbols "on"
 
    filter "configurations:Release"
       defines "FA_RELEASE"
       runtime "Release"
-      optimize "On"
+      optimize "on"
 
    filter "configurations:Dist"
       defines "FA_DIST"
       runtime "Release"
-      optimize "On"
+      optimize "on"
 
 
 project "Sandbox"
    location "Sandbox"
    kind "ConsoleApp"
    language "C++"
-   staticruntime "Off"
-
+   cppdialect "C++20"
+   staticruntime "on"
 
    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
    objdir ("bin-intermediate/" .. outputdir .. "/%{prj.name}")
@@ -111,7 +112,6 @@ project "Sandbox"
       "FaragonEngine/vendor",
       "%{IncludedDir.spdlog}",
       "%{IncludedDir.glm}",
-
    }
    
    links
@@ -120,8 +120,7 @@ project "Sandbox"
    }
 
    filter "system:windows"
-      cppdialect "C++20"
-      staticruntime "On"
+
       systemversion "latest"
 
          defines
@@ -132,14 +131,14 @@ project "Sandbox"
    filter "configurations:Debug"
       defines "FA_DEBUG"
       runtime "Debug"
-      symbols "On"
+      symbols "on"
 
    filter "configurations:Release"
       defines "FA_RELEASE"
       runtime "Release"
-      optimize "On"
+      optimize "on"
 
    filter "configurations:Dist"
       defines "FA_DIST"
       runtime "Release"
-      optimize "On"
+      optimize "on"

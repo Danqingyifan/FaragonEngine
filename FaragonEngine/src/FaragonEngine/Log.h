@@ -12,7 +12,6 @@
 #define FA_CORE_ERROR(...)		::FaragonEngine::Log::GetCoreLogger()->error(__VA_ARGS__)
 #define FA_CORE_WARN(...)		::FaragonEngine::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define FA_CORE_INFO(...)		::FaragonEngine::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define FA_CORE_DEBUG(...)		::FaragonEngine::Log::GetCoreLogger()->debug(__VA_ARGS__)
 #define FA_CORE_TRACE(...)		::FaragonEngine::Log::GetCoreLogger()->trace(__VA_ARGS__)
 
 // Client log macros									 
@@ -20,7 +19,6 @@
 #define FA_ERROR(...)			::FaragonEngine::Log::GetClientLogger()->error(__VA_ARGS__)
 #define FA_WARN(...)			::FaragonEngine::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define FA_INFO(...)			::FaragonEngine::Log::GetClientLogger()->info(__VA_ARGS__)
-#define FA_DEBUG(...)			::FaragonEngine::Log::GetClientLogger()->debug(__VA_ARGS__)
 #define FA_TRACE(...)			::FaragonEngine::Log::GetClientLogger()->trace(__VA_ARGS__)
 
 namespace FaragonEngine
