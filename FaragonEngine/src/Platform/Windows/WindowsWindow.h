@@ -1,5 +1,6 @@
 #pragma once
 #include "FaragonEngine/Window.h"
+#include "FaragonEngine/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 
@@ -26,6 +27,7 @@ namespace FaragonEngine
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

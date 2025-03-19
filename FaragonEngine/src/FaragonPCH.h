@@ -13,7 +13,6 @@
 #include <unordered_map>
 #include <unordered_set>
 
-
 #ifdef FA_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

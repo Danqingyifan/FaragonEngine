@@ -7,7 +7,8 @@
 #include "FaragonEngine/Events/KeyEvent.h"
 #include "FaragonEngine/Events/MouseEvent.h"
 
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
+
 
 namespace FaragonEngine
 {
@@ -45,10 +46,9 @@ namespace FaragonEngine
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		FA_CORE_ASSERT(m_Window, "Could not create GLFW window!");
-		glfwMakeContextCurrent(m_Window);
 
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		FA_CORE_ASSERT(status, "Could not initialize GLAD!");
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
@@ -155,7 +155,7 @@ namespace FaragonEngine
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
