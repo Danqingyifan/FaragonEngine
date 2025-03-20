@@ -14,6 +14,27 @@ namespace FaragonEngine
 
 	Application* Application::s_Instance = nullptr;
 
+	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
+	{
+		switch (type)
+		{
+		case ShaderDataType::Float:    return GL_FLOAT;
+		case ShaderDataType::Float2:   return GL_FLOAT;
+		case ShaderDataType::Float3:   return GL_FLOAT;
+		case ShaderDataType::Float4:   return GL_FLOAT;
+		case ShaderDataType::Int:      return GL_INT;
+		case ShaderDataType::Int2:     return GL_INT;
+		case ShaderDataType::Int3:     return GL_INT;
+		case ShaderDataType::Int4:     return GL_INT;
+		case ShaderDataType::Mat3:     return GL_FLOAT;
+		case ShaderDataType::Mat4:     return GL_FLOAT;
+		case ShaderDataType::Bool:     return GL_BOOL;
+		}
+
+		FA_ASSERT(false, "Unknown ShaderDataType!");
+		return 0;
+	}
+
 	Application::Application()
 	{
 		FA_ASSERT(!s_Instance, "Application already exists!");
@@ -29,15 +50,38 @@ namespace FaragonEngine
 		glBindVertexArray(m_VertexArray);
 
 		float vertices[] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.0f,  0.5f, 0.0f,
+			// positions		// colors
+			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+			 0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f
 		};
 
 		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+		{
+			BufferLayout layout =
+			{
+				{ "a_Pos",ShaderDataType::Float3},
+				{ "a_Color",ShaderDataType::Float4}
+			};
+			m_VertexBuffer->SetLayout(layout);
+		}
+
+		uint32_t index = 0;
+		const BufferLayout& layout = m_VertexBuffer->GetLayout();
+		for (auto& element : layout)
+		{
+			glEnableVertexAttribArray(index);
+			glVertexAttribPointer(
+				index,
+				element.GetComponentCount(),
+				ShaderDataTypeToOpenGLBaseType(element.type),
+				element.normalized ? GL_TRUE : GL_FALSE,
+				layout.GetStride(),
+				(const void*)element.offset
+			);
+			index++;
+		}
 
 		uint32_t indices[] = { 0, 1, 2 };
 
@@ -45,21 +89,28 @@ namespace FaragonEngine
 
 		std::string vertexSrc = R"(
 			#version 330 core
-			layout (location = 0) in vec3 aPos;
-			out vec3 FragPos;
+
+			layout (location = 0) in vec3 a_Pos;
+			layout (location = 1) in vec4 a_Color;
+
+			out vec4 v_Color;
+
 			void main()
 			{
-				gl_Position = vec4(aPos, 1.0);
-				FragPos = aPos;
+				gl_Position = vec4(a_Pos, 1.0);
+				v_Color = a_Color;
 			}
 		)";
 		std::string fragmentSrc = R"(
 			#version 330 core
-			in vec3 FragPos;
-			out vec4 FragColor;
+
+			layout (location = 0) out vec4 color;
+
+			in vec4 v_Color;
+
 			void main()
 			{
-				FragColor = vec4(FragPos, 1.0f);
+				color = vec4(v_Color);
 			}
 		)";
 

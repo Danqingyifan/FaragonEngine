@@ -33,7 +33,8 @@ namespace FaragonEngine
 
 			glDeleteShader(vertexShaderID);
 
-			FA_CORE_ASSERT(false, "Error compiling vertex shader: {0}", infoLog.data());
+			FA_CORE_ERROR("Error compiling vertex shader: {0}", infoLog.data());
+			FA_CORE_ASSERT(false, "Error compiling vertex shader");
 			return;
 		}
 
@@ -54,7 +55,8 @@ namespace FaragonEngine
 			glDeleteShader(vertexShaderID);
 			glDeleteShader(fragmentShaderID);
 
-			FA_CORE_ASSERT(false, "Error compiling fragment shader: {0}", infoLog.data());
+			FA_CORE_ERROR("Error compiling fragment shader: {0}", infoLog.data());
+			FA_CORE_ASSERT(false, "Error compiling fragment shader");
 			return;
 		}
 
@@ -77,7 +79,8 @@ namespace FaragonEngine
 			glDeleteShader(fragmentShaderID);
 			glDeleteProgram(program);
 
-			FA_CORE_ASSERT(false, "Error linking program: {0}", infoLog.data());
+			FA_CORE_ERROR("Error linking program: {0}", infoLog.data());
+			FA_CORE_ASSERT(false, "Error linking program");
 			return;
 		}
 
