@@ -1358,6 +1358,10 @@
     </ClInclude>
     <ClInclude Include="src\FaragonEngine\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\FaragonEngine\Renderer\Shader.h" />
+    <ClInclude Include="src\FaragonEngine\Renderer\Buffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\FaragonEngine\Renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FaragonEngine\Application.cpp">
@@ -1391,5 +1395,9 @@
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\FaragonEngine\Renderer\Shader.cpp" />
+    <ClCompile Include="src\FaragonEngine\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\FaragonEngine\Renderer\Renderer.cpp" />
   </ItemGroup>
 </Project>

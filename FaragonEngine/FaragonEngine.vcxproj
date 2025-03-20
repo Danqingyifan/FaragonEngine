@@ -143,6 +143,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\FaragonEngine\Renderer\Renderer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\FaragonEngine\Renderer\Buffer.h" />
+    <ClInclude Include="src\FaragonEngine\Renderer\Shader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\FaragonEngine.h" />
     <ClInclude Include="src\FaragonEngine\Application.h" />
@@ -585,6 +589,10 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\FaragonEngine\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\FaragonEngine\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\FaragonEngine\Renderer\Shader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\FaragonEngine\Application.cpp" />
     <ClCompile Include="src\FaragonEngine\Events\Event.cpp" />

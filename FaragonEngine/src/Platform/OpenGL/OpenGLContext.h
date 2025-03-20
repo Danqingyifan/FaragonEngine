@@ -1,5 +1,6 @@
 #pragma once
 #include "FaragonEngine/Renderer/GraphicsContext.h"
+
 struct GLFWwindow;
 
 namespace FaragonEngine

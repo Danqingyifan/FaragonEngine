@@ -20,7 +20,6 @@ namespace FaragonEngine
 		public:
 			using EventCallbackFn = std::function<void(Event&)>;
 
-
 			virtual ~Window() {};
 
 			virtual void OnUpdate() = 0;

@@ -10,6 +10,9 @@
 
 #include "ImGui/ImGuiLayer.h"
 
+#include "FaragonEngine/Renderer/Shader.h"
+#include "FaragonEngine/Renderer/Buffer.h"
+
 namespace FaragonEngine
 {
 	class FARAGON_API Application
@@ -33,8 +36,11 @@ namespace FaragonEngine
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		float m_LastFrameTime = 0.0f;
+		unsigned int m_VertexArray;
 
+		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 	private:
 		static Application* s_Instance;
 	};
