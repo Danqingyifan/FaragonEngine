@@ -8,13 +8,13 @@ namespace FaragonEngine
 {
 	VertexArray* VertexArray::Create()
 	{
-		RenderAPI api = Renderer::GetRenderAPI();
+		RendererAPI::API api = Renderer::GetRenderAPI();
 		switch (api)
 		{
-		case RenderAPI::None:
+		case RendererAPI::API::None:
 			FA_CORE_ASSERT(false, "RenderAPI::None is not supported!");
 			return nullptr;
-		case RenderAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 			return new OpenGLVertexArray();
 		default:
 			FA_CORE_ASSERT(false, "Unknown RenderAPI!");

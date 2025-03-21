@@ -14,6 +14,7 @@
 #include "FaragonEngine/Renderer/Buffer.h"
 #include "FaragonEngine/Renderer/VertexArray.h"
 
+
 namespace FaragonEngine
 {
 	class FARAGON_API Application

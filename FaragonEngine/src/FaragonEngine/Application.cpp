@@ -6,7 +6,7 @@
 
 #include "FaragonEngine/Input.h"
 
-#include <glad/glad.h>
+#include "FaragonEngine/Renderer/Renderer.h"
 
 namespace FaragonEngine
 {
@@ -92,23 +92,26 @@ namespace FaragonEngine
 		};
 		float test_vertices[] = {
 			// positions		
+			-0.5f,  0.5f, 0.0f,
+			 0.5f,  0.5f, 0.0f,
 			-0.5f, -0.5f, 0.0f,
 			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f,
 		};
 		std::shared_ptr<VertexBuffer> test_vertexBuffer;
 		test_vertexBuffer.reset(VertexBuffer::Create(test_vertices, sizeof(test_vertices)));
 		test_vertexBuffer->SetLayout(test_layout);
 
-		m_VertexArray->AddVertexBuffer(test_vertexBuffer);
+		m_SquareVA->AddVertexBuffer(test_vertexBuffer);
 
 		// Add index buffer
-		uint32_t test_indices[] = { 0, 1, 2 , 2, 3, 0 };
+		uint32_t test_indices[] = {
+			0, 1, 2, // first triangle
+			1, 2, 3
+		};
 		std::shared_ptr<IndexBuffer> test_indexBuffer;
 		test_indexBuffer.reset(IndexBuffer::Create(test_indices, sizeof(test_indices) / sizeof(uint32_t)));
 
-		m_VertexArray->SetIndexBuffer(test_indexBuffer);
+		m_SquareVA->SetIndexBuffer(test_indexBuffer);
 
 		std::string test_vertexSrc = R"(
 			#version 330 core
@@ -127,7 +130,7 @@ namespace FaragonEngine
 
 			void main()
 			{
-				color = vec4(0.2f, 0.3f, 0.8f, 1.0f);
+				color = vec4(0.5f, 0.7f, 0.9f, 1.0f);
 			}
 		)";
 
@@ -170,12 +173,18 @@ namespace FaragonEngine
 	{
 		while (m_Running)
 		{
-			glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({ 0.2f, 0.3f, 0.8f, 1.0f });
+			RenderCommand::Clear();
+
+			Renderer::BeginScene();
 
 			m_Shader->Bind();
-			m_VertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(m_VertexArray);
+
+			m_SquareShader->Bind();
+			Renderer::Submit(m_SquareVA);
+
+			Renderer::EndScene();
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();

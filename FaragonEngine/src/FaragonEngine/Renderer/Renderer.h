@@ -1,17 +1,20 @@
 #pragma once
+
+#include "RenderCommand.h"
+#include "VertexArray.h"
+
+#include <glm/glm.hpp>
+
 namespace FaragonEngine
 {
-	enum class RenderAPI
-	{
-		None = 0,
-		OpenGL = 1,
-	};
 	class Renderer
 	{
 	public:
-		inline static RenderAPI GetRenderAPI() { return s_RenderAPI; }
-	private:
-		static RenderAPI s_RenderAPI;
+		static void BeginScene();
+		static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+		static void EndScene();
+
+		inline static RendererAPI::API GetRenderAPI() { return  RendererAPI::GetAPI(); }
 	};
 }
 
