@@ -143,6 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\FaragonEngine\Core\Timestep.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\Camera.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\RenderCommand.h" />

@@ -5,6 +5,7 @@
 #include "FaragonEngine/Core.h"
 #include "FaragonEngine/Application.h"
 #include "FaragonEngine/Log.h"
+#include "FaragonEngine/Core/Timestep.h"
 
 // -----------Layer--------------
 

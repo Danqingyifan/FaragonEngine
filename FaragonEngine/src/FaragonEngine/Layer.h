@@ -1,5 +1,6 @@
 #pragma once
 #include "FaragonEngine/Core.h"
+#include "FaragonEngine/Core/Timestep.h"
 #include "FaragonEngine/Events/Event.h"
 
 namespace FaragonEngine
@@ -12,7 +13,7 @@ namespace FaragonEngine
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnEvent(Event& event) {}
 		virtual void OnImGuiRender() {}
 

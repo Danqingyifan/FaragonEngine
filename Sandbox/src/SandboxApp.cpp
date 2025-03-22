@@ -63,35 +63,36 @@ public:
 		)";
 
 		m_Shader.reset(new FaragonEngine::Shader(vertexSrc, fragmentSrc));
+
 	}
 
-	void OnUpdate() override
+	void OnUpdate(FaragonEngine::Timestep deltaTime) override
 	{
 		if (FaragonEngine::Input::IsKeyPressed(FA_KEY_W))
 		{
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * deltaTime;
 		}
 		else if (FaragonEngine::Input::IsKeyPressed(FA_KEY_S))
 		{
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * deltaTime;
 		}
 
 		if (FaragonEngine::Input::IsKeyPressed(FA_KEY_A))
 		{
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * deltaTime;
 		}
 		else if (FaragonEngine::Input::IsKeyPressed(FA_KEY_D))
 		{
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * deltaTime;
 		}
 
 		if (FaragonEngine::Input::IsKeyPressed(FA_KEY_Q))
 		{
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * deltaTime;
 		}
 		else if (FaragonEngine::Input::IsKeyPressed(FA_KEY_E))
 		{
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * deltaTime;
 		}
 
 		FaragonEngine::RenderCommand::SetClearColor({ 0.2f, 0.3f, 0.8f, 1.0f });
@@ -112,10 +113,10 @@ private:
 	// Camera
 	FaragonEngine::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition = { 0.0f, 0.0f, 0.0f };
-	float m_CameraMoveSpeed = 0.01f;
+	float m_CameraMoveSpeed = 1.0f;
 
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 0.5f;
+	float m_CameraRotationSpeed = 36.0f;
 };
 
 class Sandbox : public FaragonEngine::Application

@@ -1,10 +1,15 @@
 #include "FaragonPCH.h"
 
 #include "Application.h"
-#include "FaragonEngine/Log.h"
+#include "Log.h"
 
-#include "FaragonEngine/Input.h"
-#include "FaragonEngine/Events/WindowEvent.h"
+#include "Input.h"
+#include "Events/WindowEvent.h"
+
+#include "Core/Timestep.h"
+
+// TEMPORARY
+#include "GLFW/glfw3.h"
 
 namespace FaragonEngine
 {
@@ -58,8 +63,12 @@ namespace FaragonEngine
 	{
 		while (m_Running)
 		{
+			float time = (float)glfwGetTime();
+			Timestep timestep = Timestep(time - m_LastFrameTime);
+			m_LastFrameTime = time;
+
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
