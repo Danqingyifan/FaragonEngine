@@ -3,15 +3,13 @@
 #include <iostream>
 #include <utility>
 #include <algorithm>
-#include <memory>
 #include <functional>
+#include <memory>
 
 #include <string>
-#include <sstream>
 #include <vector>
-#include <unordered_map>
-#include <unordered_set>
 
+#include "FaragonEngine/Core.h"
 #include "FaragonEngine/Log.h"
 
 #ifdef FA_PLATFORM_WINDOWS

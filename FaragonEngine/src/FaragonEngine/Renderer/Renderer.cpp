@@ -1,5 +1,8 @@
 #include "FaragonPCH.h"
+
 #include "Renderer.h"
+
+#include "Platform/OpenGL/OpenGLShader.h"
 
 namespace FaragonEngine
 {
@@ -12,9 +15,11 @@ namespace FaragonEngine
 
 	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, const glm::mat4& transform /*= glm::mat4(1.0f)*/)
 	{
-		shader->Bind();
-		shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
-		shader->UploadUniformMat4("u_Transform", transform);
+		auto openGLShader = std::dynamic_pointer_cast<OpenGLShader>(shader);
+
+		openGLShader->Bind();
+		openGLShader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		openGLShader->UploadUniformMat4("u_Transform", transform);
 
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray);

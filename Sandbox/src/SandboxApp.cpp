@@ -1,6 +1,12 @@
 #include <FaragonEngine.h>
 
+#include <imgui/imgui.h>
+
+#include <glad/glad.h>
+
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 
 class ExampleLayer : public FaragonEngine::Layer
 {
@@ -65,8 +71,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(new FaragonEngine::Shader(vertexSrc, fragmentSrc));
-
+		m_Shader.reset(FaragonEngine::Shader::Create(vertexSrc, fragmentSrc));
 	}
 
 	void OnUpdate(FaragonEngine::Timestep deltaTime) override
@@ -98,7 +103,7 @@ public:
 			m_CameraRotation -= m_CameraRotationSpeed * deltaTime;
 		}
 
-		FaragonEngine::RenderCommand::SetClearColor({ 0.2f, 0.3f, 0.8f, 1.0f });
+		FaragonEngine::RenderCommand::SetClearColor(m_ClearColor);
 		FaragonEngine::RenderCommand::Clear();
 
 		m_Camera.SetPosition(m_CameraPosition);
@@ -116,6 +121,14 @@ public:
 		FaragonEngine::Renderer::EndScene();
 	}
 
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("Settings");
+
+		ImGui::ColorEdit3("Clear Color", glm::value_ptr(m_ClearColor));
+
+		ImGui::End();
+	}
 private:
 	std::shared_ptr<FaragonEngine::Shader> m_Shader;
 	std::shared_ptr<FaragonEngine::VertexArray> m_VertexArray;
@@ -127,6 +140,9 @@ private:
 
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 36.0f;
+
+	//Clear Color
+	glm::vec4 m_ClearColor = { 0.1f, 0.1f, 0.1f, 1.0f };
 };
 
 class Sandbox : public FaragonEngine::Application

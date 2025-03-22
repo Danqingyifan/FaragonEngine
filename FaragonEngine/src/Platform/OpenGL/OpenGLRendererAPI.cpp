@@ -3,7 +3,7 @@
 
 #include <glad/glad.h>
 
-namespace FaragonEngine 
+namespace FaragonEngine
 {
 	void OpenGLRendererAPI::SetClearColor(const glm::vec4& color)
 	{
