@@ -10,11 +10,7 @@
 
 #include "ImGui/ImGuiLayer.h"
 
-#include "FaragonEngine/Renderer/Shader.h"
-#include "FaragonEngine/Renderer/Buffer.h"
-#include "FaragonEngine/Renderer/VertexArray.h"
 
-#include "FaragonEngine/Renderer/Camera.h"
 
 namespace FaragonEngine
 {
@@ -38,12 +34,6 @@ namespace FaragonEngine
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		// Camera
-		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};
