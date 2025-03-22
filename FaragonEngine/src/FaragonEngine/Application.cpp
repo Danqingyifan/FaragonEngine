@@ -25,6 +25,8 @@ namespace FaragonEngine
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
+		m_Camera = OrthographicCamera(-1.6f, 1.6f, -0.9f, 0.9f);
+
 		m_VertexArray.reset(VertexArray::Create());
 
 		// Add vertex buffer and layout
@@ -57,11 +59,13 @@ namespace FaragonEngine
 			layout (location = 0) in vec3 a_Pos;
 			layout (location = 1) in vec4 a_Color;
 
+			uniform mat4 u_ViewProjection;
+
 			out vec4 v_Color;
 
 			void main()
 			{
-				gl_Position = vec4(a_Pos, 1.0);
+				gl_Position = u_ViewProjection * vec4(a_Pos, 1.0);
 				v_Color = a_Color;
 			}
 		)";
@@ -79,62 +83,6 @@ namespace FaragonEngine
 		)";
 
 		m_Shader.reset(new Shader(vertexSrc, fragmentSrc));
-
-
-		////////////////////////////////////////
-		/////////////// Test Code //////////////
-		////////////////////////////////////////
-
-		m_SquareVA.reset(VertexArray::Create());
-		// Add vertex buffer and layout
-		BufferLayout test_layout = {
-			{ "a_Pos",ShaderDataType::Float3},
-		};
-		float test_vertices[] = {
-			// positions		
-			-0.5f,  0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-		};
-		std::shared_ptr<VertexBuffer> test_vertexBuffer;
-		test_vertexBuffer.reset(VertexBuffer::Create(test_vertices, sizeof(test_vertices)));
-		test_vertexBuffer->SetLayout(test_layout);
-
-		m_SquareVA->AddVertexBuffer(test_vertexBuffer);
-
-		// Add index buffer
-		uint32_t test_indices[] = {
-			0, 1, 2, // first triangle
-			1, 2, 3
-		};
-		std::shared_ptr<IndexBuffer> test_indexBuffer;
-		test_indexBuffer.reset(IndexBuffer::Create(test_indices, sizeof(test_indices) / sizeof(uint32_t)));
-
-		m_SquareVA->SetIndexBuffer(test_indexBuffer);
-
-		std::string test_vertexSrc = R"(
-			#version 330 core
-
-			layout (location = 0) in vec3 a_Pos;
-
-			void main()
-			{
-				gl_Position = vec4(a_Pos, 1.0);
-			}
-		)";
-		std::string test_fragmentSrc = R"(
-			#version 330 core
-
-			layout (location = 0) out vec4 color;
-
-			void main()
-			{
-				color = vec4(0.5f, 0.7f, 0.9f, 1.0f);
-			}
-		)";
-
-		m_SquareShader.reset(new Shader(test_vertexSrc, test_fragmentSrc));
 	}
 
 	void Application::OnEvent(Event& e)
@@ -176,14 +124,11 @@ namespace FaragonEngine
 			RenderCommand::SetClearColor({ 0.2f, 0.3f, 0.8f, 1.0f });
 			RenderCommand::Clear();
 
-			Renderer::BeginScene();
+			m_Camera.SetPosition({ 0.5f, 0.5f, 0.0f });
+			m_Camera.SetRotation(45.0f);
 
-			m_Shader->Bind();
-			Renderer::Submit(m_VertexArray);
-
-			m_SquareShader->Bind();
-			Renderer::Submit(m_SquareVA);
-
+			Renderer::BeginScene(m_Camera);
+			Renderer::Submit(m_Shader,m_VertexArray);
 			Renderer::EndScene();
 
 			for (Layer* layer : m_LayerStack)

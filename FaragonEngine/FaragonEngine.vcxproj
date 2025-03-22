@@ -143,6 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\FaragonEngine\Renderer\Camera.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\RendererAPI.h" />
@@ -594,6 +595,7 @@
     <ClInclude Include="src\FaragonEngine\Renderer\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\FaragonEngine\Renderer\Camera.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\RendererAPI.cpp" />

@@ -14,6 +14,7 @@
 #include "FaragonEngine/Renderer/Buffer.h"
 #include "FaragonEngine/Renderer/VertexArray.h"
 
+#include "FaragonEngine/Renderer/Camera.h"
 
 namespace FaragonEngine
 {
@@ -41,9 +42,8 @@ namespace FaragonEngine
 		std::shared_ptr<Shader> m_Shader;
 		std::shared_ptr<VertexArray> m_VertexArray;
 
-		// Test
-		std::shared_ptr<Shader> m_SquareShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
+		// Camera
+		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};
