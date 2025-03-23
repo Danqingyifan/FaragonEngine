@@ -5,7 +5,7 @@
 #include "Platform/OpenGL/OpenGLBuffer.h"
 namespace FaragonEngine
 {
-	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
+	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
 	{
 		RendererAPI::API api = Renderer::GetRenderAPI();
 		switch (api)
@@ -14,14 +14,14 @@ namespace FaragonEngine
 			FA_CORE_ASSERT(false, "RenderAPI::None is not supported!");
 			return nullptr;
 		case RendererAPI::API::OpenGL:
-			return new OpenGLVertexBuffer(vertices, size);
+			return std::make_shared<OpenGLVertexBuffer>(vertices, size);
 		default:
 			FA_CORE_ASSERT(false, "Unknown RenderAPI!");
 			return nullptr;
 		}
 
 	}
-	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t count)
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t* indices, uint32_t count)
 	{
 		RendererAPI::API api = Renderer::GetRenderAPI();
 		switch (api)
@@ -30,7 +30,7 @@ namespace FaragonEngine
 			FA_CORE_ASSERT(false, "RenderAPI::None is not supported!");
 			return nullptr;
 		case RendererAPI::API::OpenGL:
-			return new OpenGLIndexBuffer(indices, count);
+			return std::make_shared<OpenGLIndexBuffer>(indices, count);
 		default:
 			FA_CORE_ASSERT(false, "Unknown RenderAPI!");
 			return nullptr;

@@ -7,14 +7,23 @@
     <Filter Include="src\FaragonEngine">
       <UniqueIdentifier>{F01CC51A-5C33-C3B0-A5AA-4ED211009438}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\FaragonEngine\Core">
+      <UniqueIdentifier>{48D7A521-34D1-CE73-1D3E-658409D734E0}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\FaragonEngine\Events">
       <UniqueIdentifier>{D4DA9A27-C0FF-E9A7-E94A-CF37D5CEE8C5}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\FaragonEngine\ImGui">
       <UniqueIdentifier>{1A86CB56-86BD-13EE-8FC7-7711FB7D3AE7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\FaragonEngine\Renderer">
+      <UniqueIdentifier>{96EEB770-82FE-6341-EBB7-C85FD7E652DA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
@@ -40,6 +49,9 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\FaragonEngine.h">
@@ -50,6 +62,9 @@
     </ClInclude>
     <ClInclude Include="src\FaragonEngine\Core.h">
       <Filter>src\FaragonEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Core\Timestep.h">
+      <Filter>src\FaragonEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\FaragonEngine\EntryPoint.h">
       <Filter>src\FaragonEngine</Filter>
@@ -90,11 +105,50 @@
     <ClInclude Include="src\FaragonEngine\MouseButtonCodes.h">
       <Filter>src\FaragonEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Renderer\Buffer.h">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Renderer\Camera.h">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Renderer\GraphicsContext.h">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Renderer\RenderCommand.h">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Renderer\Renderer.h">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Renderer\RendererAPI.h">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Renderer\Shader.h">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Renderer\VertexArray.h">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\FaragonEngine\Window.h">
       <Filter>src\FaragonEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\FaragonPCH.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
@@ -1356,20 +1410,11 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\FaragonEngine\Renderer\GraphicsContext.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\FaragonEngine\Renderer\Shader.h" />
-    <ClInclude Include="src\FaragonEngine\Renderer\Buffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\FaragonEngine\Renderer\Renderer.h" />
-    <ClInclude Include="src\FaragonEngine\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\FaragonEngine\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\FaragonEngine\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="src\FaragonEngine\Renderer\Camera.h" />
-    <ClInclude Include="src\FaragonEngine\Core\Timestep.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Renderer\Texture.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FaragonEngine\Application.cpp">
@@ -1393,8 +1438,44 @@
     <ClCompile Include="src\FaragonEngine\Log.cpp">
       <Filter>src\FaragonEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\FaragonEngine\Renderer\Buffer.cpp">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FaragonEngine\Renderer\Camera.cpp">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FaragonEngine\Renderer\RenderCommand.cpp">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FaragonEngine\Renderer\Renderer.cpp">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FaragonEngine\Renderer\RendererAPI.cpp">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FaragonEngine\Renderer\Shader.cpp">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FaragonEngine\Renderer\VertexArray.cpp">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\FaragonPCH.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
@@ -1402,17 +1483,10 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="src\FaragonEngine\Renderer\Shader.cpp" />
-    <ClCompile Include="src\FaragonEngine\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\FaragonEngine\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\FaragonEngine\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\FaragonEngine\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\FaragonEngine\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="src\FaragonEngine\Renderer\Camera.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FaragonEngine\Renderer\Texture.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp" />
   </ItemGroup>
 </Project>

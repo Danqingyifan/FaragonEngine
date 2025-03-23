@@ -14,6 +14,7 @@ IncludedDir["Glad"] = "FaragonEngine/vendor/Glad/include"
 IncludedDir["spdlog"] = "FaragonEngine/vendor/spdlog/include"
 IncludedDir["ImGui"] = "FaragonEngine/vendor/imgui"
 IncludedDir["glm"] = "FaragonEngine/vendor/glm"
+IncludedDir["stb_image"] = "FaragonEngine/vendor/stb_image"
 
 group "Dependencies"
    include "FaragonEngine/vendor/GLFW"
@@ -39,7 +40,9 @@ project "FaragonEngine"
       "%{prj.name}/src/**.h",
       "%{prj.name}/src/**.cpp",
       "%{prj.name}/vendor/glm/**.hpp",
-      "%{prj.name}/vendor/glm/**.inl"
+      "%{prj.name}/vendor/glm/**.inl",
+      "%{prj.name}/vendor/stb_image/**.h",
+      "%{prj.name}/vendor/stb_image/**.cpp"
    }
 
    defines
@@ -55,6 +58,7 @@ project "FaragonEngine"
       "%{IncludedDir.ImGui}",
       "%{IncludedDir.spdlog}",
       "%{IncludedDir.glm}",
+      "%{IncludedDir.stb_image}",
    }
 
    links

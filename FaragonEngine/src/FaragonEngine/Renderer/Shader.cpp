@@ -6,7 +6,7 @@
 
 namespace FaragonEngine
 {
-	Shader* Shader::Create(const std::string& vertexSrc, const std::string& fragmentSrc)
+	Ref<Shader> Shader::Create(const std::string& vertexSrc, const std::string& fragmentSrc)
 	{
 		RendererAPI::API api = Renderer::GetRenderAPI();
 		switch (api)
@@ -15,7 +15,7 @@ namespace FaragonEngine
 			FA_CORE_ASSERT(false, "RenderAPI::None is not supported!");
 			return nullptr;
 		case RendererAPI::API::OpenGL:
-			return new OpenGLShader(vertexSrc, fragmentSrc);
+			return std::make_shared<OpenGLShader>(vertexSrc, fragmentSrc);
 		default:
 			FA_CORE_ASSERT(false, "Unknown RenderAPI!");
 			return nullptr;
