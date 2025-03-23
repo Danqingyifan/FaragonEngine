@@ -6,5 +6,6 @@
 namespace FaragonEngine
 {
 	RendererAPI* RenderCommand::s_RendererAPI = new OpenGLRendererAPI;
+
 }
 	

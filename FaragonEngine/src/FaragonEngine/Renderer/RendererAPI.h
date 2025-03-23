@@ -14,6 +14,7 @@ namespace FaragonEngine
 			OpenGL = 1
 		};
 	public:
+		virtual void Init() = 0;
 		inline static API GetAPI() { return s_RenderAPI; }
 
 		virtual void SetClearColor(const glm::vec4& color) = 0;

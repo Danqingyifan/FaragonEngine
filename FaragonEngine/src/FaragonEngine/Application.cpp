@@ -8,6 +8,7 @@
 
 #include "Core/Timestep.h"
 
+#include "Renderer/Renderer.h"
 // TEMPORARY
 #include "GLFW/glfw3.h"
 
@@ -22,6 +23,8 @@ namespace FaragonEngine
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(FA_BIND_EVENT_FN(Application::OnEvent));
+
+		Renderer::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
