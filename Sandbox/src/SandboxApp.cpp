@@ -28,7 +28,7 @@ public:
 			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
 			 0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f
 		};
-		std::shared_ptr<FaragonEngine::VertexBuffer> vertexBuffer;
+		FaragonEngine::Ref<FaragonEngine::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(FaragonEngine::VertexBuffer::Create(vertices, sizeof(vertices)));
 		vertexBuffer->SetLayout(layout);
 
@@ -36,7 +36,7 @@ public:
 
 		// Add index buffer
 		uint32_t indices[] = { 0, 1, 2 };
-		std::shared_ptr<FaragonEngine::IndexBuffer> indexBuffer;
+		FaragonEngine::Ref<FaragonEngine::IndexBuffer> indexBuffer;
 		indexBuffer.reset(FaragonEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 
 		m_VertexArray->SetIndexBuffer(indexBuffer);
@@ -130,8 +130,8 @@ public:
 		ImGui::End();
 	}
 private:
-	std::shared_ptr<FaragonEngine::Shader> m_Shader;
-	std::shared_ptr<FaragonEngine::VertexArray> m_VertexArray;
+	FaragonEngine::Ref<FaragonEngine::Shader> m_Shader;
+	FaragonEngine::Ref<FaragonEngine::VertexArray> m_VertexArray;
 
 	// Camera
 	FaragonEngine::OrthographicCamera m_Camera;
