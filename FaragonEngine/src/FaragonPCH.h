@@ -7,6 +7,7 @@
 #include <memory>
 
 #include <string>
+#include <array>
 #include <vector>
 
 #include "FaragonEngine/Core.h"

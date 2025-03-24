@@ -24,6 +24,13 @@ namespace FaragonEngine
 		std::string source = ReadFile(filePath);
 		auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
+
+		// Extract name from file path
+		auto lastSlash = filePath.find_last_of("/\\");
+		lastSlash = (lastSlash == std::string::npos) ? 0 : lastSlash + 1;
+		auto lastDot = filePath.rfind('.');
+		auto count = lastDot == std::string::npos ? filePath.size() - lastSlash : lastDot - lastSlash;
+		m_Name = filePath.substr(lastSlash, count);
 	}
 
 	OpenGLShader::~OpenGLShader()
@@ -87,7 +94,7 @@ namespace FaragonEngine
 	std::string OpenGLShader::ReadFile(const std::string& filePath)
 	{
 		std::string result;
-		std::ifstream in(filePath, std::ios::in, std::ios::binary);
+		std::ifstream in(filePath, std::ios::in | std::ios::binary);
 		if (in)
 		{
 			in.seekg(0, std::ios::end);
@@ -132,7 +139,9 @@ namespace FaragonEngine
 	{
 		GLuint program = glCreateProgram();
 
-		std::vector<GLuint> shaderIDs(shaderSources.size());
+		FA_CORE_ASSERT(shaderSources.size() <= 2, "Shader can have at most 2 shaders");
+		std::array<GLuint, 2> shaderIDs;
+		int shaderIndex = 0;
 
 		for (auto kv : shaderSources)
 		{
@@ -146,9 +155,9 @@ namespace FaragonEngine
 			glCompileShader(shaderID);
 
 			// Check for errors
-			GLint success = 0;
-			glGetShaderiv(shaderID, GL_COMPILE_STATUS, &success);
-			if (success == GL_FALSE)
+			GLint linkSuccess = 0;
+			glGetShaderiv(shaderID, GL_COMPILE_STATUS, &linkSuccess);
+			if (linkSuccess == GL_FALSE)
 			{
 				GLint maxLength = 0;
 				glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &maxLength);
@@ -163,7 +172,7 @@ namespace FaragonEngine
 				return;
 			}
 			glAttachShader(program, shaderID);
-			shaderIDs.push_back(shaderID);
+			shaderIDs[shaderIndex++] = shaderID;
 		}
 
 		m_RendererID = program;

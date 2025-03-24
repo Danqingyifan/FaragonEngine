@@ -47,7 +47,7 @@ public:
 		m_Texture = FaragonEngine::Texture2D::Create("assets/textures/TestTexture.png");
 
 		// Create Shaders
-		m_TextureShader = FaragonEngine::Shader::Create("assets/shaders/TextureShader.glsl");
+		auto m_TextureShader = m_ShaderLibrary.Load("assets/shaders/TextureShader.glsl");
 		std::dynamic_pointer_cast<FaragonEngine::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<FaragonEngine::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
@@ -97,7 +97,8 @@ public:
 
 		glm::mat4 transform = translate * rotate * scale;
 
-		FaragonEngine::Renderer::Submit(m_TextureShader, m_VertexArray, transform);
+
+		FaragonEngine::Renderer::Submit(m_ShaderLibrary.Get("TextureShader"), m_VertexArray, transform);
 
 		FaragonEngine::Renderer::EndScene();
 	}
@@ -112,11 +113,8 @@ public:
 	}
 private:
 	// Renderer
-	FaragonEngine::Ref<FaragonEngine::Shader> m_FlatColorShader;
-
-	FaragonEngine::Ref<FaragonEngine::Shader> m_TextureShader;
+	FaragonEngine::ShaderLibrary m_ShaderLibrary;
 	FaragonEngine::Ref<FaragonEngine::Texture2D> m_Texture;
-
 	FaragonEngine::Ref<FaragonEngine::VertexArray> m_VertexArray;
 
 	// Camera
