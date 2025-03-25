@@ -2,22 +2,23 @@
 
 // -----------Core--------------
 
-#include "FaragonEngine/Core.h"
-#include "FaragonEngine/Application.h"
-#include "FaragonEngine/Log.h"
+#include "FaragonEngine/Core/Core.h"
+#include "FaragonEngine/Core/Log.h"
 #include "FaragonEngine/Core/Timestep.h"
+#include "FaragonEngine/Core/Layer.h"
 
-// -----------Layer--------------
+#include "FaragonEngine/Application.h"
 
-#include "FaragonEngine/Layer.h"
+// -----------ImGui--------------
+
 #include "FaragonEngine/ImGui/ImGuiLayer.h"
 
 // -----------Input--------------
 
-#include "FaragonEngine/Input.h"
-#include "FaragonEngine/KeyCodes.h"
-#include "FaragonEngine/MouseButtonCodes.h"
-#include "FaragonEngine/CameraController.h"
+#include "FaragonEngine/Input/Input.h"
+#include "FaragonEngine/Input/KeyCodes.h"
+#include "FaragonEngine/Input/MouseButtonCodes.h"
+#include "FaragonEngine/Input/CameraController.h"
 
 // -----------Renderer--------------
 
@@ -31,7 +32,5 @@
 
 #include "FaragonEngine/Renderer/Camera.h"
 
-// -----------Entry Point--------------
 
-#include "FaragonEngine/EntryPoint.h"
 

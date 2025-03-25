@@ -1,16 +1,12 @@
 #pragma once
-#include "Core.h"
+#include "FaragonEngine/Core/Core.h"
+#include "FaragonEngine/Core/Window.h"
+#include "FaragonEngine/Core/LayerStack.h"
 
-#include "Window.h"
+#include "FaragonEngine/Events/Event.h"
+#include "FaragonEngine/Events/WindowEvent.h"
 
-#include "Events/Event.h"
-#include "Events/WindowEvent.h"
-
-#include "LayerStack.h"
-
-#include "ImGui/ImGuiLayer.h"
-
-
+#include "FaragonEngine/ImGui/ImGuiLayer.h"
 
 namespace FaragonEngine
 {

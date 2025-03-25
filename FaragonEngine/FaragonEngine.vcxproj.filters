@@ -16,6 +16,9 @@
     <Filter Include="src\FaragonEngine\ImGui">
       <UniqueIdentifier>{1A86CB56-86BD-13EE-8FC7-7711FB7D3AE7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\FaragonEngine\Input">
+      <UniqueIdentifier>{EFC0CC56-5BF8-14EE-6402-7911D0B83BE7}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\FaragonEngine\Renderer">
       <UniqueIdentifier>{96EEB770-82FE-6341-EBB7-C85FD7E652DA}</UniqueIdentifier>
     </Filter>
@@ -60,14 +63,26 @@
     <ClInclude Include="src\FaragonEngine\Application.h">
       <Filter>src\FaragonEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\FaragonEngine\Core.h">
-      <Filter>src\FaragonEngine</Filter>
+    <ClInclude Include="src\FaragonEngine\Core\Core.h">
+      <Filter>src\FaragonEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Core\EntryPoint.h">
+      <Filter>src\FaragonEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Core\Layer.h">
+      <Filter>src\FaragonEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Core\LayerStack.h">
+      <Filter>src\FaragonEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Core\Log.h">
+      <Filter>src\FaragonEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\FaragonEngine\Core\Timestep.h">
       <Filter>src\FaragonEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\FaragonEngine\EntryPoint.h">
-      <Filter>src\FaragonEngine</Filter>
+    <ClInclude Include="src\FaragonEngine\Core\Window.h">
+      <Filter>src\FaragonEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\FaragonEngine\Events\ApplicationEvent.h">
       <Filter>src\FaragonEngine\Events</Filter>
@@ -87,23 +102,17 @@
     <ClInclude Include="src\FaragonEngine\ImGui\ImGuiLayer.h">
       <Filter>src\FaragonEngine\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\FaragonEngine\Input.h">
-      <Filter>src\FaragonEngine</Filter>
+    <ClInclude Include="src\FaragonEngine\Input\CameraController.h">
+      <Filter>src\FaragonEngine\Input</Filter>
     </ClInclude>
-    <ClInclude Include="src\FaragonEngine\KeyCodes.h">
-      <Filter>src\FaragonEngine</Filter>
+    <ClInclude Include="src\FaragonEngine\Input\Input.h">
+      <Filter>src\FaragonEngine\Input</Filter>
     </ClInclude>
-    <ClInclude Include="src\FaragonEngine\Layer.h">
-      <Filter>src\FaragonEngine</Filter>
+    <ClInclude Include="src\FaragonEngine\Input\KeyCodes.h">
+      <Filter>src\FaragonEngine\Input</Filter>
     </ClInclude>
-    <ClInclude Include="src\FaragonEngine\LayerStack.h">
-      <Filter>src\FaragonEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\FaragonEngine\Log.h">
-      <Filter>src\FaragonEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\FaragonEngine\MouseButtonCodes.h">
-      <Filter>src\FaragonEngine</Filter>
+    <ClInclude Include="src\FaragonEngine\Input\MouseButtonCodes.h">
+      <Filter>src\FaragonEngine\Input</Filter>
     </ClInclude>
     <ClInclude Include="src\FaragonEngine\Renderer\Buffer.h">
       <Filter>src\FaragonEngine\Renderer</Filter>
@@ -126,11 +135,11 @@
     <ClInclude Include="src\FaragonEngine\Renderer\Shader.h">
       <Filter>src\FaragonEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\FaragonEngine\Renderer\VertexArray.h">
+    <ClInclude Include="src\FaragonEngine\Renderer\Texture.h">
       <Filter>src\FaragonEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\FaragonEngine\Window.h">
-      <Filter>src\FaragonEngine</Filter>
+    <ClInclude Include="src\FaragonEngine\Renderer\VertexArray.h">
+      <Filter>src\FaragonEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\FaragonPCH.h">
       <Filter>src</Filter>
@@ -145,6 +154,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
@@ -1413,13 +1425,19 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\FaragonEngine\Renderer\Texture.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h" />
-    <ClInclude Include="src\FaragonEngine\CameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FaragonEngine\Application.cpp">
       <Filter>src\FaragonEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FaragonEngine\Core\Layer.cpp">
+      <Filter>src\FaragonEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FaragonEngine\Core\LayerStack.cpp">
+      <Filter>src\FaragonEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FaragonEngine\Core\Log.cpp">
+      <Filter>src\FaragonEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\FaragonEngine\Events\Event.cpp">
       <Filter>src\FaragonEngine\Events</Filter>
@@ -1430,14 +1448,8 @@
     <ClCompile Include="src\FaragonEngine\ImGui\ImGuiLayer.cpp">
       <Filter>src\FaragonEngine\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\FaragonEngine\Layer.cpp">
-      <Filter>src\FaragonEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\FaragonEngine\LayerStack.cpp">
-      <Filter>src\FaragonEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="src\FaragonEngine\Log.cpp">
-      <Filter>src\FaragonEngine</Filter>
+    <ClCompile Include="src\FaragonEngine\Input\CameraController.cpp">
+      <Filter>src\FaragonEngine\Input</Filter>
     </ClCompile>
     <ClCompile Include="src\FaragonEngine\Renderer\Buffer.cpp">
       <Filter>src\FaragonEngine\Renderer</Filter>
@@ -1455,6 +1467,9 @@
       <Filter>src\FaragonEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\FaragonEngine\Renderer\Shader.cpp">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FaragonEngine\Renderer\Texture.cpp">
       <Filter>src\FaragonEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\FaragonEngine\Renderer\VertexArray.cpp">
@@ -1475,6 +1490,9 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
@@ -1487,8 +1505,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\FaragonEngine\Renderer\Texture.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp" />
-    <ClCompile Include="src\FaragonEngine\CameraController.cpp" />
   </ItemGroup>
 </Project>

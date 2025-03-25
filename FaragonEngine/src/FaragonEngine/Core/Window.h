@@ -1,6 +1,6 @@
 #pragma once
 #include "FaragonPCH.h"
-#include "Events/Event.h"
+#include "FaragonEngine/Events/Event.h"
 
 namespace FaragonEngine
 {

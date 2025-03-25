@@ -1,8 +1,6 @@
 #include "FaragonPCH.h"
 #include "WindowsWindow.h"
 
-#include "FaragonEngine/Core.h"
-#include "FaragonEngine/Log.h"
 #include "FaragonEngine/Events/WindowEvent.h"
 #include "FaragonEngine/Events/KeyEvent.h"
 #include "FaragonEngine/Events/MouseEvent.h"

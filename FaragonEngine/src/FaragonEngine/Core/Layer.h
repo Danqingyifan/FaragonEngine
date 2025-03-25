@@ -1,5 +1,5 @@
 #pragma once
-#include "FaragonEngine/Core.h"
+#include "FaragonEngine/Core/Core.h"
 #include "FaragonEngine/Core/Timestep.h"
 #include "FaragonEngine/Events/Event.h"
 

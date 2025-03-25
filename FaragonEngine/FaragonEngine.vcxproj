@@ -143,25 +143,25 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\FaragonEngine\CameraController.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h" />
     <ClInclude Include="src\FaragonEngine.h" />
     <ClInclude Include="src\FaragonEngine\Application.h" />
-    <ClInclude Include="src\FaragonEngine\Core.h" />
+    <ClInclude Include="src\FaragonEngine\Core\Core.h" />
+    <ClInclude Include="src\FaragonEngine\Core\EntryPoint.h" />
+    <ClInclude Include="src\FaragonEngine\Core\Layer.h" />
+    <ClInclude Include="src\FaragonEngine\Core\LayerStack.h" />
+    <ClInclude Include="src\FaragonEngine\Core\Log.h" />
     <ClInclude Include="src\FaragonEngine\Core\Timestep.h" />
-    <ClInclude Include="src\FaragonEngine\EntryPoint.h" />
+    <ClInclude Include="src\FaragonEngine\Core\Window.h" />
     <ClInclude Include="src\FaragonEngine\Events\ApplicationEvent.h" />
     <ClInclude Include="src\FaragonEngine\Events\Event.h" />
     <ClInclude Include="src\FaragonEngine\Events\KeyEvent.h" />
     <ClInclude Include="src\FaragonEngine\Events\MouseEvent.h" />
     <ClInclude Include="src\FaragonEngine\Events\WindowEvent.h" />
     <ClInclude Include="src\FaragonEngine\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\FaragonEngine\Input.h" />
-    <ClInclude Include="src\FaragonEngine\KeyCodes.h" />
-    <ClInclude Include="src\FaragonEngine\Layer.h" />
-    <ClInclude Include="src\FaragonEngine\LayerStack.h" />
-    <ClInclude Include="src\FaragonEngine\Log.h" />
-    <ClInclude Include="src\FaragonEngine\MouseButtonCodes.h" />
+    <ClInclude Include="src\FaragonEngine\Input\CameraController.h" />
+    <ClInclude Include="src\FaragonEngine\Input\Input.h" />
+    <ClInclude Include="src\FaragonEngine\Input\KeyCodes.h" />
+    <ClInclude Include="src\FaragonEngine\Input\MouseButtonCodes.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\Camera.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\GraphicsContext.h" />
@@ -169,17 +169,17 @@
     <ClInclude Include="src\FaragonEngine\Renderer\Renderer.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\RendererAPI.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\Shader.h" />
+    <ClInclude Include="src\FaragonEngine\Renderer\Texture.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\VertexArray.h" />
-    <ClInclude Include="src\FaragonEngine\Window.h" />
     <ClInclude Include="src\FaragonPCH.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
-    <ClInclude Include="src\FaragonEngine\Renderer\Texture.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
@@ -601,21 +601,21 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\FaragonEngine\CameraController.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp" />
     <ClCompile Include="src\FaragonEngine\Application.cpp" />
+    <ClCompile Include="src\FaragonEngine\Core\Layer.cpp" />
+    <ClCompile Include="src\FaragonEngine\Core\LayerStack.cpp" />
+    <ClCompile Include="src\FaragonEngine\Core\Log.cpp" />
     <ClCompile Include="src\FaragonEngine\Events\Event.cpp" />
     <ClCompile Include="src\FaragonEngine\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\FaragonEngine\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\FaragonEngine\Layer.cpp" />
-    <ClCompile Include="src\FaragonEngine\LayerStack.cpp" />
-    <ClCompile Include="src\FaragonEngine\Log.cpp" />
+    <ClCompile Include="src\FaragonEngine\Input\CameraController.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\Buffer.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\Camera.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\Shader.cpp" />
+    <ClCompile Include="src\FaragonEngine\Renderer\Texture.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\FaragonPCH.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -624,10 +624,10 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
-    <ClCompile Include="src\FaragonEngine\Renderer\Texture.cpp" />
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>

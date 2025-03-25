@@ -1,7 +1,9 @@
 #include "FaragonPCH.h"
+
 #include "OpenGLShader.h"
 
 #include <glad/glad.h>
+
 #include <glm/gtc/type_ptr.hpp>
 
 #include <fstream>
@@ -48,6 +50,43 @@ namespace FaragonEngine
 		glUseProgram(0);
 	}
 
+	void OpenGLShader::SetInt(const std::string& name, int value) 
+	{
+		UploadUniformInt(name, value);
+	}
+
+	void OpenGLShader::SetFloat(const std::string& name, float value) 
+	{
+		UploadUniformFloat(name, value);
+	}
+
+	void OpenGLShader::SetFloat2(const std::string& name, const glm::vec2& vector) 
+	{
+		UploadUniformFloat2(name, vector);
+	}
+
+	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& vector) 
+	{
+		UploadUniformFloat3(name, vector);
+	}
+
+	void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& vector) 
+	{
+		UploadUniformFloat4(name, vector);
+	}
+
+	void OpenGLShader::SetMat3(const std::string& name, const glm::mat3& matrix) 
+	{
+		UploadUniformMat3(name, matrix);
+	}
+
+	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& matrix) 
+	{
+		UploadUniformMat4(name, matrix);
+	}
+
+
+	// private
 	void OpenGLShader::UploadUniformInt(const std::string& name, int value)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
@@ -90,7 +129,6 @@ namespace FaragonEngine
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
-	// private
 	std::string OpenGLShader::ReadFile(const std::string& filePath)
 	{
 		std::string result;

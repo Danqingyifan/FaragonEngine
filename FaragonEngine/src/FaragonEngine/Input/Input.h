@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FaragonEngine/Core.h"
+#include "FaragonEngine/Core/Core.h"
 
 namespace FaragonEngine
 {

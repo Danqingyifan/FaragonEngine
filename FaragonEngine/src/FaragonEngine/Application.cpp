@@ -1,14 +1,15 @@
 #include "FaragonPCH.h"
 
 #include "Application.h"
-#include "Log.h"
 
-#include "Input.h"
-#include "Events/WindowEvent.h"
+#include "FaragonEngine/Input/Input.h"
 
-#include "Core/Timestep.h"
+#include "FaragonEngine/Events/WindowEvent.h"
 
-#include "Renderer/Renderer.h"
+#include "FaragonEngine/Core/Timestep.h"
+
+#include "FaragonEngine/Renderer/Renderer.h"
+
 // TEMPORARY
 #include "GLFW/glfw3.h"
 

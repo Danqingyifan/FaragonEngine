@@ -1,5 +1,5 @@
 #pragma once
-#include "FaragonEngine/Window.h"
+#include "FaragonEngine/Core/Window.h"
 #include "FaragonEngine/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

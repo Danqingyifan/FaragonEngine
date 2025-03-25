@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FaragonEngine/Input.h"
+#include "FaragonEngine/Input/Input.h"
 
 namespace FaragonEngine
 {

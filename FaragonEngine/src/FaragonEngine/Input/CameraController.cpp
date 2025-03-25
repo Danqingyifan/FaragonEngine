@@ -1,8 +1,8 @@
 #include "FaragonPCH.h"
 #include "CameraController.h"
 
-#include "FaragonEngine/Input.h"
-#include "FaragonEngine/KeyCodes.h"
+#include "FaragonEngine/Input/Input.h"
+#include "FaragonEngine/Input/KeyCodes.h"
 
 namespace FaragonEngine
 {

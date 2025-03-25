@@ -10,8 +10,8 @@
 #include <array>
 #include <vector>
 
-#include "FaragonEngine/Core.h"
-#include "FaragonEngine/Log.h"
+#include "FaragonEngine/Core/Core.h"
+#include "FaragonEngine/Core/Log.h"
 
 #ifdef FA_PLATFORM_WINDOWS
 	#include <Windows.h>

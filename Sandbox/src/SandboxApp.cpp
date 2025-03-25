@@ -1,18 +1,23 @@
 #include <FaragonEngine.h>
+#include <FaragonEngine/Core/EntryPoint.h>
 
 #include <imgui/imgui.h>
-
-#include <glad/glad.h>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 #include "PlatForm/OpenGL/OpenGLShader.h"
 
+#include "Sandbox2D.h"
+
 class ExampleLayer : public FaragonEngine::Layer
 {
 public:
 	ExampleLayer() : Layer("Example")
+	{
+
+	}
+	void OnAttach() override
 	{
 		m_OrthographicCameraController = FaragonEngine::OrthographicCameraController(1280.0f / 720.0f);
 
@@ -48,10 +53,13 @@ public:
 
 		// Create Shaders
 		auto m_TextureShader = m_ShaderLibrary.Load("assets/shaders/TextureShader.glsl");
-		std::dynamic_pointer_cast<FaragonEngine::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<FaragonEngine::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		m_TextureShader->Bind();
+		m_TextureShader->SetInt("u_Texture", 0);
 	}
+	void OnDetach() override
+	{
 
+	}
 	void OnUpdate(FaragonEngine::Timestep deltaTime) override
 	{
 		m_OrthographicCameraController.OnUpdate(deltaTime);
@@ -68,7 +76,6 @@ public:
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(1.5f, 1.5f, 1.0f));
 
 		glm::mat4 transform = translate * rotate * scale;
-
 
 		FaragonEngine::Renderer::Submit(m_ShaderLibrary.Get("TextureShader"), m_VertexArray, transform);
 
@@ -105,7 +112,8 @@ class Sandbox : public FaragonEngine::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		// PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 	~Sandbox()
 	{
