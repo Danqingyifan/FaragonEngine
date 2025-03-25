@@ -21,6 +21,7 @@ namespace FaragonEngine
 
 		inline static RendererAPI::API GetRenderAPI() { return  RendererAPI::GetAPI(); }
 
+		static void OnWindowResize(uint32_t width, uint32_t height);
 	private:
 		struct SceneData
 		{
