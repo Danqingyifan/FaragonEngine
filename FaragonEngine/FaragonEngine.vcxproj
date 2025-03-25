@@ -143,6 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\FaragonEngine\CameraController.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h" />
     <ClInclude Include="src\FaragonEngine.h" />
     <ClInclude Include="src\FaragonEngine\Application.h" />
@@ -600,6 +601,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\FaragonEngine\CameraController.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp" />
     <ClCompile Include="src\FaragonEngine\Application.cpp" />
     <ClCompile Include="src\FaragonEngine\Events\Event.cpp" />

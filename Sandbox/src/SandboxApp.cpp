@@ -14,7 +14,7 @@ class ExampleLayer : public FaragonEngine::Layer
 public:
 	ExampleLayer() : Layer("Example")
 	{
-		m_Camera = FaragonEngine::OrthographicCamera(-1.6f, 1.6f, -0.9f, 0.9f);
+		m_OrthographicCameraController = FaragonEngine::OrthographicCameraController(1280.0f / 720.0f);
 
 		m_VertexArray = FaragonEngine::VertexArray::Create();
 		// Add vertex buffer and layout
@@ -54,40 +54,12 @@ public:
 
 	void OnUpdate(FaragonEngine::Timestep deltaTime) override
 	{
-		if (FaragonEngine::Input::IsKeyPressed(FA_KEY_W))
-		{
-			m_CameraPosition.y += m_CameraMoveSpeed * deltaTime;
-		}
-		else if (FaragonEngine::Input::IsKeyPressed(FA_KEY_S))
-		{
-			m_CameraPosition.y -= m_CameraMoveSpeed * deltaTime;
-		}
-
-		if (FaragonEngine::Input::IsKeyPressed(FA_KEY_A))
-		{
-			m_CameraPosition.x -= m_CameraMoveSpeed * deltaTime;
-		}
-		else if (FaragonEngine::Input::IsKeyPressed(FA_KEY_D))
-		{
-			m_CameraPosition.x += m_CameraMoveSpeed * deltaTime;
-		}
-
-		if (FaragonEngine::Input::IsKeyPressed(FA_KEY_Q))
-		{
-			m_CameraRotation += m_CameraRotationSpeed * deltaTime;
-		}
-		else if (FaragonEngine::Input::IsKeyPressed(FA_KEY_E))
-		{
-			m_CameraRotation -= m_CameraRotationSpeed * deltaTime;
-		}
+		m_OrthographicCameraController.OnUpdate(deltaTime);
 
 		FaragonEngine::RenderCommand::SetClearColor(m_ClearColor);
 		FaragonEngine::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		FaragonEngine::Renderer::BeginScene(m_Camera);
+		FaragonEngine::Renderer::BeginScene(m_OrthographicCameraController.GetCamera());
 
 		m_Texture->Bind();
 
@@ -103,6 +75,11 @@ public:
 		FaragonEngine::Renderer::EndScene();
 	}
 
+	void OnEvent(FaragonEngine::Event& e) override
+	{
+		m_OrthographicCameraController.OnEvent(e);
+	}
+
 	void OnImGuiRender() override
 	{
 		ImGui::Begin("Settings");
@@ -116,17 +93,11 @@ private:
 	FaragonEngine::ShaderLibrary m_ShaderLibrary;
 	FaragonEngine::Ref<FaragonEngine::Texture2D> m_Texture;
 	FaragonEngine::Ref<FaragonEngine::VertexArray> m_VertexArray;
-
 	// Camera
-	FaragonEngine::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition = { 0.0f, 0.0f, 0.0f };
-	float m_CameraMoveSpeed = 1.0f;
-
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 36.0f;
+	FaragonEngine::OrthographicCameraController m_OrthographicCameraController;
 
 	//Clear Color
-	glm::vec4 m_ClearColor = { 0.1f, 0.1f, 0.1f, 1.0f };
+	glm::vec4 m_ClearColor = { 0.2f, 0.3f, 0.6f, 1.0f };
 };
 
 class Sandbox : public FaragonEngine::Application

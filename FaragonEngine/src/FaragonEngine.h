@@ -17,6 +17,7 @@
 #include "FaragonEngine/Input.h"
 #include "FaragonEngine/KeyCodes.h"
 #include "FaragonEngine/MouseButtonCodes.h"
+#include "FaragonEngine/CameraController.h"
 
 // -----------Renderer--------------
 

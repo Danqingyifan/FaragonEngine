@@ -1415,6 +1415,7 @@
     </ClInclude>
     <ClInclude Include="src\FaragonEngine\Renderer\Texture.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h" />
+    <ClInclude Include="src\FaragonEngine\CameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FaragonEngine\Application.cpp">
@@ -1488,5 +1489,6 @@
     </ClCompile>
     <ClCompile Include="src\FaragonEngine\Renderer\Texture.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp" />
+    <ClCompile Include="src\FaragonEngine\CameraController.cpp" />
   </ItemGroup>
 </Project>
