@@ -15,6 +15,8 @@ private:
 	// Renderer
 	FaragonEngine::ShaderLibrary m_ShaderLibrary;
 	FaragonEngine::Ref<FaragonEngine::VertexArray> m_VertexArray;
+	// Textures
+	FaragonEngine::Ref<FaragonEngine::Texture2D> m_Texture;
 	// Camera
 	FaragonEngine::OrthographicCameraController m_OrthographicCameraController;
 	//Clear Color
