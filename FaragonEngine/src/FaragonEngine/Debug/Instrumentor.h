@@ -203,7 +203,7 @@ namespace FaragonEngine {
 	}
 }
 
-#define FA_PROFILE 1
+#define FA_PROFILE 0
 
 #if FA_PROFILE
 // Resolve which function signature macro will be used. Note that this only
