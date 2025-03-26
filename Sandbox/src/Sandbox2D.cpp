@@ -35,6 +35,7 @@ void Sandbox2D::OnUpdate(FaragonEngine::Timestep deltaTime)
 
 	FaragonEngine::Renderer2D::BeginScene(m_OrthographicCameraController.GetCamera());
 
+	FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 0.75f, 0.75f });
 	FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.0f }, { 0.5f, 0.5f }, { 0.2f, 0.3f, 0.8f, 1.0f });
 	FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.1f }, { 1.0f, 1.0f }, { 0.5f, 0.5f, 0.5f, 1.0f }, m_Texture);
 
