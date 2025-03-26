@@ -13,3 +13,6 @@ Intermediates/
 **.vcxproj.filters
 **.vcxproj.user
 **.csproj
+Sandbox/FaragonEngineProfile-Runtime.json
+Sandbox/FaragonEngineProfile-Shutdown.json
+Sandbox/FaragonEngineProfile-Startup.json
