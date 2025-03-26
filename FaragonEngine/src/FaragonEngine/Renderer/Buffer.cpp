@@ -14,7 +14,7 @@ namespace FaragonEngine
 			FA_CORE_ASSERT(false, "RenderAPI::None is not supported!");
 			return nullptr;
 		case RendererAPI::API::OpenGL:
-			return std::make_shared<OpenGLVertexBuffer>(vertices, size);
+			return CreateRef<OpenGLVertexBuffer>(vertices, size);
 		default:
 			FA_CORE_ASSERT(false, "Unknown RenderAPI!");
 			return nullptr;
@@ -30,7 +30,7 @@ namespace FaragonEngine
 			FA_CORE_ASSERT(false, "RenderAPI::None is not supported!");
 			return nullptr;
 		case RendererAPI::API::OpenGL:
-			return std::make_shared<OpenGLIndexBuffer>(indices, count);
+			return CreateRef<OpenGLIndexBuffer>(indices, count);
 		default:
 			FA_CORE_ASSERT(false, "Unknown RenderAPI!");
 			return nullptr;

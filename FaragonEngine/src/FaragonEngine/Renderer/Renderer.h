@@ -39,15 +39,14 @@ namespace FaragonEngine
 		static void BeginScene(OrthographicCamera& camera);
 		static void EndScene();
 
-		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color = { 1.0f, 1.0f , 1.0f, 1.0f }, const Ref<Texture2D>& texture2D = nullptr);
+		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color = { 1.0f, 1.0f , 1.0f, 1.0f }, const Ref<Texture2D>& texture2D = s_Renderer2DData->WhiteTexture);
 	
 	private:
 		struct Renderer2DStorage
 		{
 			Ref<VertexArray> QuadVertexArray;
-
-			Ref<Shader> FlatColorShader;
-			Ref<Shader> TextureShader;
+			Ref<Shader> Shader;
+			Ref<Texture2D> WhiteTexture;
 		};
 		static Renderer2DStorage* s_Renderer2DData;
 	};

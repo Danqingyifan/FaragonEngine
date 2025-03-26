@@ -52,6 +52,10 @@ namespace FaragonEngine
 
 	void Renderer2D::Init()
 	{
+		// White Texture
+		uint32_t whiteTextureData = 0xffffffff;
+		s_Renderer2DData->WhiteTexture = Texture2D::Create(1, 1, &whiteTextureData, sizeof(uint32_t));
+
 		s_Renderer2DData->QuadVertexArray = VertexArray::Create();
 		// Add vertex buffer and layout
 		BufferLayout layout = {
@@ -59,6 +63,7 @@ namespace FaragonEngine
 			{ "a_Color",ShaderDataType::Float4},
 			{ "a_TexCoord",ShaderDataType::Float2}
 		};
+
 		float vertices[] = {
 			// positions		// colors               //TexCoords
 			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
@@ -66,6 +71,7 @@ namespace FaragonEngine
 			0.5f, 0.5f, 0.0f,   0.0f, 0.0f, 1.0f, 1.0f,	1.0f, 1.0f,
 			-0.5f, 0.5f, 0.0f,  1.0f, 0.0f, 1.0f, 1.0f,	0.0f, 1.0f
 		};
+
 		Ref<VertexBuffer> vertexBuffer;
 		vertexBuffer = VertexBuffer::Create(vertices, sizeof(vertices));
 		vertexBuffer->SetLayout(layout);
@@ -80,8 +86,7 @@ namespace FaragonEngine
 		s_Renderer2DData->QuadVertexArray->SetIndexBuffer(indexBuffer);
 
 		// Add shaders
-		s_Renderer2DData->FlatColorShader = Shader::Create("assets/shaders/FlatColorShader.glsl");
-		s_Renderer2DData->TextureShader = Shader::Create("assets/shaders/TextureShader.glsl");
+		s_Renderer2DData->Shader = Shader::Create("assets/shaders/TextureShader.glsl");
 	}
 
 	void Renderer2D::ShutDown()
@@ -91,13 +96,9 @@ namespace FaragonEngine
 
 	void Renderer2D::BeginScene(OrthographicCamera& camera)
 	{
-		s_Renderer2DData->FlatColorShader->Bind();
-		s_Renderer2DData->FlatColorShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-		s_Renderer2DData->FlatColorShader->SetMat4("u_Transform", glm::mat4(1.0f));
-
-		s_Renderer2DData->TextureShader->Bind();
-		s_Renderer2DData->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-		s_Renderer2DData->TextureShader->SetMat4("u_Transform", glm::mat4(1.0f));
+		s_Renderer2DData->Shader->Bind();
+		s_Renderer2DData->Shader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
+		s_Renderer2DData->Shader->SetMat4("u_Transform", glm::mat4(1.0f));
 	}
 
 	void Renderer2D::EndScene()
@@ -107,16 +108,11 @@ namespace FaragonEngine
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color, const Ref<Texture2D>& texture2D)
 	{
-		Ref<Shader> shader = texture2D ? s_Renderer2DData->TextureShader : s_Renderer2DData->FlatColorShader;
-		shader->Bind();
+		s_Renderer2DData->Shader->SetInt("u_Texture", 0);
 
-		if (texture2D)
-		{
-			shader->SetInt("u_Texture", 0);
-			texture2D->Bind();
-		}
+		texture2D->Bind();
 
-		shader->SetFloat4("u_Color", color);
+		s_Renderer2DData->Shader->SetFloat4("u_Color", color);
 
 		glm::mat4 translate = glm::translate(glm::mat4(1.0f), position);
 		glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), glm::radians(0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
@@ -124,7 +120,7 @@ namespace FaragonEngine
 
 		glm::mat4 transform = translate * rotate * scale;
 
-		shader->SetMat4("u_Transform", transform);
+		s_Renderer2DData->Shader->SetMat4("u_Transform", transform);
 
 		s_Renderer2DData->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Renderer2DData->QuadVertexArray);
