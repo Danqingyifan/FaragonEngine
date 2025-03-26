@@ -152,6 +152,7 @@
     <ClInclude Include="src\FaragonEngine\Core\Log.h" />
     <ClInclude Include="src\FaragonEngine\Core\Timestep.h" />
     <ClInclude Include="src\FaragonEngine\Core\Window.h" />
+    <ClInclude Include="src\FaragonEngine\Debug\Instrumentor.h" />
     <ClInclude Include="src\FaragonEngine\Events\ApplicationEvent.h" />
     <ClInclude Include="src\FaragonEngine\Events\Event.h" />
     <ClInclude Include="src\FaragonEngine\Events\KeyEvent.h" />

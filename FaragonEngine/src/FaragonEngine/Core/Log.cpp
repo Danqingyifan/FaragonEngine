@@ -12,16 +12,6 @@ namespace FaragonEngine
 	std::shared_ptr<spdlog::sinks::basic_file_sink_mt> Log::s_ErrorLogFileSink =
 		std::make_shared<spdlog::sinks::basic_file_sink_mt>("error.log", true);
 
-	Log::Log()
-	{
-
-	}
-	
-	Log::~Log()
-	{
-
-	}
-
 	void Log::Init()
 	{
 		spdlog::set_pattern("%^[%T] [%n]: %v%$");

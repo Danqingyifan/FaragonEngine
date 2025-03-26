@@ -26,8 +26,8 @@ namespace FaragonEngine
 	class FARAGON_API Log
 	{
 	public:
-		Log();
-		virtual ~Log();
+		Log() = default;
+		virtual ~Log() = default;
 
 		static void Init();
 		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return s_CoreLogger; }

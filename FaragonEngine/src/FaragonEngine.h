@@ -32,5 +32,10 @@
 
 #include "FaragonEngine/Renderer/Camera.h"
 
+// -----------Debug--------------
+
+#include "FaragonEngine/Debug/Instrumentor.h"
+
+
 
 

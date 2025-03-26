@@ -65,13 +65,6 @@ namespace FaragonEngine
 		ImGui::NewFrame();
 	}
 
-
-	void ImGuiLayer::OnImGuiRender()
-	{
-		static bool show_demo_window = true;
-		ImGui::ShowDemoWindow(&show_demo_window);
-	}
-
 	void ImGuiLayer::End()
 	{
 		ImGuiIO& io = ImGui::GetIO();

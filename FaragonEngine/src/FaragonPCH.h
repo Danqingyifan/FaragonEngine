@@ -13,6 +13,9 @@
 #include "FaragonEngine/Core/Core.h"
 #include "FaragonEngine/Core/Log.h"
 
+// Debug
+#include "FaragonEngine/Debug/Instrumentor.h"
+
 #ifdef FA_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif
