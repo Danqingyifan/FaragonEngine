@@ -14,6 +14,8 @@ namespace FaragonEngine
 
 		virtual unsigned int GetWidth() const = 0;
 		virtual unsigned int GetHeight() const = 0;
+
+		virtual uint32_t GetRendererID() const = 0;
 	};
 
 	class Texture2D : public Texture

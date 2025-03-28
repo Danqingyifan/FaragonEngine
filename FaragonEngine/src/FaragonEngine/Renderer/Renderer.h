@@ -27,7 +27,7 @@ namespace FaragonEngine
 		{
 			glm::mat4 ViewProjectionMatrix;
 		};
-		static SceneData* m_SceneData;
+		static SceneData* s_SceneData;
 	};
 
 	class Renderer2D
@@ -37,22 +37,46 @@ namespace FaragonEngine
 		static void ShutDown();
 
 		static void BeginScene(OrthographicCamera& camera);
+		static void Flush();
 		static void EndScene();
 
 		static void DrawQuad(
-			const glm::vec3& position = { 0.0f, 0.0f, 0.0f }, const float rotation = 0.0f, const glm::vec2& size = { 1.0f, 1.0f }, 
+			const glm::vec3& position = { 0.0f, 0.0f, 0.0f }, const float rotation = 0.0f, const glm::vec2& size = { 1.0f, 1.0f },
 			const glm::vec4& color = { 1.0f, 1.0f , 1.0f, 1.0f },
-			const Ref<Texture2D>& texture2D = s_Renderer2DData->WhiteTexture, const float tileFactor = 1.0f
+			const Ref<Texture2D>& texture2D = WhiteTexture, const float tileFactor = 1.0f
 		);
-
 	private:
-		struct Renderer2DStorage
+		struct QuadVertex
+		{
+			glm::vec3 Position;
+			glm::vec4 Color;
+			glm::vec2 TexCoord;
+			float TexIndex;
+			float TilingFactor;
+		};
+
+		struct Renderer2DData
 		{
 			Ref<VertexArray> QuadVertexArray;
-			Ref<Shader> Shader;
-			Ref<Texture2D> WhiteTexture;
+			Ref<VertexBuffer> QuadVertexBuffer;
+			Ref<IndexBuffer> QuadIndexBuffer;
+			Ref<Shader> QuadShader;
+			
+			const uint32_t MaxQuads = 10000;
+			const uint32_t MaxVertices = MaxQuads * 4;
+			const uint32_t MaxIndices = MaxQuads * 6;
+			static const uint32_t MaxTextureSlots = 32;
+			
+			uint32_t QuadIndexCount = 0;
+			QuadVertex* QuadVertexBufferBase = nullptr;
+			QuadVertex* QuadVertexBufferPtr = nullptr;
+
+			std::array<Ref<Texture2D>, MaxTextureSlots> TextureSlots;
+			uint32_t TextureSlotIndex = 1; // 0 is reserved for white texture
 		};
-		static Renderer2DStorage* s_Renderer2DData;
+		static Renderer2DData s_Renderer2DData;
+
+		static Ref<Texture2D> WhiteTexture;
 	};
 }
 

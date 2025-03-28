@@ -20,6 +20,8 @@ namespace FaragonEngine
 
 		inline virtual uint32_t GetWidth() const override { return m_Width; }
 		inline virtual uint32_t GetHeight() const override { return m_Height; }
+
+		inline virtual uint32_t GetRendererID() const override { return m_RendererID; }
 	private:
 		std::string m_Path;
 		uint32_t m_Width, m_Height;

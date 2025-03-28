@@ -42,14 +42,14 @@ void Sandbox2D::OnUpdate(FaragonEngine::Timestep deltaTime)
 
 	{
 		FA_PROFILE_SCOPE("Renderer2D::DrawQuad");
-		
+
 		FaragonEngine::Renderer2D::DrawQuad();
 		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.3f });
-		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.2f }, 45);
-		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, 0, { 0.75f, 0.75f });
-		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.0f }, 45, { 0.5f, 0.5f }, { 0.2f, 0.3f, 0.8f, 1.0f });
-		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.1f }, 0, { 1.0f, 1.0f }, { 0.5f, 0.5f, 0.5f, 1.0f }, m_Texture);
-		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.2f }, 45, { 1.0f, 1.0f }, { 0.5f, 0.5f, 0.5f, 1.0f }, m_Texture, 2.0f);
+		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.2f }, 45.0f);
+		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, 0.0f, { 0.75f, 0.75f });
+		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.0f }, 0.0f, { 0.5f, 0.5f }, { 0.2f, 0.3f, 0.8f, 1.0f });
+		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.1f }, 0.0f, { 1.0f, 1.0f }, { 0.5f, 0.5f, 0.5f, 1.0f }, m_Texture);
+		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.2f }, 0.0f, { 2.0f, 2.0f }, { 0.5f, 0.5f, 0.5f, 1.0f }, m_Texture, 2.0f);
 	}
 
 	FaragonEngine::Renderer2D::EndScene();
