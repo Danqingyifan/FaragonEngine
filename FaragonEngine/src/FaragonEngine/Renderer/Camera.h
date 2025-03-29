@@ -8,7 +8,7 @@ namespace FaragonEngine
 	{
 	public:
 		OrthographicCamera() = default;
-		OrthographicCamera(float left, float right, float bottom, float top, float nearZ = -1.0f, float farZ = 1.0f);
+		OrthographicCamera(float aspectRatio, float zoomLevel, bool rotationEnabled = false);
 		~OrthographicCamera() = default;
 
 		inline const glm::vec3& GetPosition() const { return m_Position; }
@@ -24,8 +24,8 @@ namespace FaragonEngine
 		inline void SetCameraMoveSpeed(float speed) { m_CameraMoveSpeed = speed; }
 		inline void SetCameraRotationSpeed(float speed) { m_CameraRotationSpeed = speed; }
 		inline void SetRotationEnabled(bool enabled) { m_RotationEnabled = enabled; }
-		inline void SetZoomLevel(float zoomLevel) { m_ZoomLevel = zoomLevel; RecalculateProjectionMatrix(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_AspectRatio * m_ZoomLevel, m_ZoomLevel); }
-		inline void SetAspectRatio(float aspectRatio) { m_AspectRatio = aspectRatio; RecalculateProjectionMatrix(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_AspectRatio * m_ZoomLevel, m_ZoomLevel); }
+		inline void SetZoomLevel(float zoomLevel) { m_ZoomLevel = zoomLevel; RecalculateProjectionMatrix(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel); }
+		inline void SetAspectRatio(float aspectRatio) { m_AspectRatio = aspectRatio; RecalculateProjectionMatrix(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel); }
 
 		inline const glm::mat4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
 		inline const glm::mat4& GetViewMatrix() const { return m_ViewMatrix; }
@@ -43,9 +43,9 @@ namespace FaragonEngine
 		float m_CameraMoveSpeed = 1.0f;
 		float m_CameraRotationSpeed = 36.0f;
 
-		float m_AspectRatio = 9.0f / 16.0f;
-		float m_ZoomLevel = 1.0f;
-		bool m_RotationEnabled = false;
+		float m_AspectRatio;
+		float m_ZoomLevel;
+		bool m_RotationEnabled;
 	};
 
 	class PerspectiveCamera

@@ -9,8 +9,7 @@ namespace FaragonEngine
 	OrthographicCameraController::OrthographicCameraController(float aspectRatio, bool rotationEnabled)
 	{
 		float zoomLevel = 1.0f;
-		m_Camera = OrthographicCamera(-aspectRatio * zoomLevel, aspectRatio * zoomLevel, -aspectRatio * zoomLevel, zoomLevel);
-		m_Camera.SetRotationEnabled(rotationEnabled);
+		m_Camera = OrthographicCamera(aspectRatio, zoomLevel, rotationEnabled);
 	}
 
 	void OrthographicCameraController::OnUpdate(float deltaTime)

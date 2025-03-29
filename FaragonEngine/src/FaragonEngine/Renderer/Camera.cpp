@@ -9,8 +9,19 @@ namespace FaragonEngine
 	///////OrthographicCamera/////////
 	//////////////////////////////////
 
-	OrthographicCamera::OrthographicCamera(float left, float right, float bottom, float top, float nearZ /*= -1.0f*/, float farZ /*= 1.0f*/)
+	OrthographicCamera::OrthographicCamera(float aspectRatio, float zoomLevel,bool rotationEnabled)
 	{
+		m_AspectRatio = aspectRatio;
+		m_ZoomLevel = zoomLevel;
+		m_RotationEnabled = rotationEnabled;
+
+		float left = -m_AspectRatio * m_ZoomLevel;
+		float right = m_AspectRatio * m_ZoomLevel;
+		float bottom = -m_ZoomLevel;
+		float top = m_ZoomLevel;
+		float nearZ = -1.0f;
+		float farZ = 1.0f;
+
 		m_ProjectionMatrix = glm::ortho(left, right, bottom, top, nearZ, farZ);
 		m_ViewMatrix = glm::mat4(1.0f);
 		m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;

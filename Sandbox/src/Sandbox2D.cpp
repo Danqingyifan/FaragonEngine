@@ -35,21 +35,22 @@ void Sandbox2D::OnUpdate(FaragonEngine::Timestep deltaTime)
 		m_OrthographicCameraController.OnUpdate(deltaTime);
 	}
 
+	FaragonEngine::Renderer2D::ResetStats();
+
 	FaragonEngine::RenderCommand::SetClearColor(m_ClearColor);
 	FaragonEngine::RenderCommand::Clear();
 
 	FaragonEngine::Renderer2D::BeginScene(m_OrthographicCameraController.GetCamera());
 
 	{
+		static float rotation = 0.0f;
+		rotation += deltaTime * 50.0f;
+
 		FA_PROFILE_SCOPE("Renderer2D::DrawQuad");
 
-		FaragonEngine::Renderer2D::DrawQuad();
-		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.3f });
-		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.2f }, 45.0f);
-		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, 0.0f, { 0.75f, 0.75f });
-		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.0f }, 0.0f, { 0.5f, 0.5f }, { 0.2f, 0.3f, 0.8f, 1.0f });
-		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.1f }, 0.0f, { 1.0f, 1.0f }, { 0.5f, 0.5f, 0.5f, 1.0f }, m_Texture);
-		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.2f }, 0.0f, { 2.0f, 2.0f }, { 0.5f, 0.5f, 0.5f, 1.0f }, m_Texture, 2.0f);
+		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.0f }, rotation, { 0.5f, 0.5f }, { 0.2f, 0.3f, 0.8f, 1.0f });
+
+		FaragonEngine::Renderer2D::DrawQuad({ 0.0f, 0.0f, 0.2f }, rotation, { 2.0f, 2.0f }, { 0.5f, 0.5f, 0.5f, 1.0f }, m_Texture, 2.0f);
 	}
 
 	FaragonEngine::Renderer2D::EndScene();
@@ -65,6 +66,7 @@ void Sandbox2D::OnImGuiRender()
 	ImGui::Begin("Settings");
 
 	ImGui::ColorEdit3("Clear Color", glm::value_ptr(m_ClearColor));
+	ImGui::Text("Draw Calls: %d", FaragonEngine::Renderer2D::GetStats().DrawCalls);
 
 	ImGui::End();
 }

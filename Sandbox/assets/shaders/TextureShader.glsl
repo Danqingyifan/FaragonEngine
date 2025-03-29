@@ -9,7 +9,6 @@ layout (location = 4) in float a_TileFactor;
 
 
 uniform mat4 u_ViewProjection;
-uniform mat4 u_Transform;
 
 out vec4 v_Color;
 out vec2 v_TexCoord;
@@ -18,7 +17,7 @@ out float v_TileFactor;
 
 void main()
 {
-	gl_Position = u_ViewProjection *  u_Transform * vec4(a_Pos, 1.0);
+	gl_Position = u_ViewProjection * vec4(a_Pos, 1.0);
 
 	//outs for fragment shader
 	v_Color = a_Color;

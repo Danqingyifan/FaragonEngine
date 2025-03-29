@@ -107,20 +107,35 @@ namespace FaragonEngine
 		s_Renderer2DData.QuadShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 		s_Renderer2DData.QuadShader->SetMat4("u_Transform", glm::mat4(1.0f));
 
-		s_Renderer2DData.QuadVertexBufferPtr = s_Renderer2DData.QuadVertexBufferBase;
+		StartBatch();
+	}
 
+	void Renderer2D::StartBatch()
+	{
+		s_Renderer2DData.QuadIndexCount = 0;
+		s_Renderer2DData.QuadVertexBufferPtr = s_Renderer2DData.QuadVertexBufferBase;
 		s_Renderer2DData.TextureSlotIndex = 1;
+	}
+
+	void Renderer2D::NextBatch()
+	{
+		Flush();
+		StartBatch();
 	}
 
 	void Renderer2D::Flush()
 	{
-		for (uint32_t i = 0; i < s_Renderer2DData.TextureSlotIndex; i++)
-		{
-			s_Renderer2DData.TextureSlots[i]->Bind(i);
-		}
+		uint32_t dataSize = (uint32_t)((uint8_t*)s_Renderer2DData.QuadVertexBufferPtr - (uint8_t*)s_Renderer2DData.QuadVertexBufferBase);
+		s_Renderer2DData.QuadVertexBuffer->SetData(s_Renderer2DData.QuadVertexBufferBase, dataSize);
 
+		// Bind textures
+		for (uint32_t i = 0; i < s_Renderer2DData.TextureSlotIndex; i++)
+			s_Renderer2DData.TextureSlots[i]->Bind(i);
+
+		s_Renderer2DData.QuadShader->Bind();
 		RenderCommand::DrawIndexed(s_Renderer2DData.QuadVertexArray, s_Renderer2DData.QuadIndexCount);
-		s_Renderer2DData.QuadIndexCount = 0;
+
+		s_Renderer2DData.Stats.DrawCalls++;
 	}
 
 	void Renderer2D::EndScene()
@@ -134,6 +149,11 @@ namespace FaragonEngine
 	{
 		float textureIndex = 0.0f;
 
+		if (s_Renderer2DData.QuadIndexCount >= s_Renderer2DData.MaxIndices)
+		{
+			NextBatch();
+		}
+
 		for (uint32_t i = 1; i < s_Renderer2DData.TextureSlotIndex; i++)
 		{
 			if (s_Renderer2DData.TextureSlots[i]->GetRendererID() == texture2D->GetRendererID())
@@ -145,40 +165,36 @@ namespace FaragonEngine
 
 		if (textureIndex == 0.0f && texture2D->GetRendererID() != WhiteTexture->GetRendererID())
 		{
+			if (s_Renderer2DData.TextureSlotIndex >= Renderer2DData::MaxTextureSlots)
+			{
+				NextBatch();
+			}
 			textureIndex = (float)s_Renderer2DData.TextureSlotIndex;
 			s_Renderer2DData.TextureSlots[s_Renderer2DData.TextureSlotIndex] = texture2D;
 			s_Renderer2DData.TextureSlotIndex++;
 		}
 
-		s_Renderer2DData.QuadVertexBufferPtr->Position = { position.x, position.y, position.z };
-		s_Renderer2DData.QuadVertexBufferPtr->Color = color;
-		s_Renderer2DData.QuadVertexBufferPtr->TexCoord = { 0.0f, 0.0f };
-		s_Renderer2DData.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Renderer2DData.QuadVertexBufferPtr->TilingFactor = tileFactor;
-		s_Renderer2DData.QuadVertexBufferPtr++;
+		glm::mat4 translate = glm::translate(glm::mat4(1.0f), position);
+		glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+		glm::mat4 transform = translate * rotate * scale;
 
-		s_Renderer2DData.QuadVertexBufferPtr->Position = { position.x + size.x, position.y, position.z };
-		s_Renderer2DData.QuadVertexBufferPtr->Color = color;
-		s_Renderer2DData.QuadVertexBufferPtr->TexCoord = { 1.0f, 0.0f };
-		s_Renderer2DData.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Renderer2DData.QuadVertexBufferPtr->TilingFactor = tileFactor;
-		s_Renderer2DData.QuadVertexBufferPtr++;
+		constexpr glm::vec2 textureCoords[] = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f }, { 0.0f, 1.0f } };
+		constexpr size_t quadVertexCount = 4;
 
-		s_Renderer2DData.QuadVertexBufferPtr->Position = { position.x + size.x, position.y + size.y, position.z };
-		s_Renderer2DData.QuadVertexBufferPtr->Color = color;
-		s_Renderer2DData.QuadVertexBufferPtr->TexCoord = { 1.0f, 1.0f };
-		s_Renderer2DData.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Renderer2DData.QuadVertexBufferPtr->TilingFactor = tileFactor;
-		s_Renderer2DData.QuadVertexBufferPtr++;
-
-		s_Renderer2DData.QuadVertexBufferPtr->Position = { position.x, position.y + size.y, position.z };
-		s_Renderer2DData.QuadVertexBufferPtr->Color = color;
-		s_Renderer2DData.QuadVertexBufferPtr->TexCoord = { 0.0f, 1.0f };
-		s_Renderer2DData.QuadVertexBufferPtr->TexIndex = textureIndex;
-		s_Renderer2DData.QuadVertexBufferPtr->TilingFactor = tileFactor;
-		s_Renderer2DData.QuadVertexBufferPtr++;
+		for (size_t i = 0; i < quadVertexCount; i++)
+		{
+			s_Renderer2DData.QuadVertexBufferPtr->Position = transform * s_Renderer2DData.QuadVertexPositions[i];
+			s_Renderer2DData.QuadVertexBufferPtr->Color = color;
+			s_Renderer2DData.QuadVertexBufferPtr->TexCoord = textureCoords[i];
+			s_Renderer2DData.QuadVertexBufferPtr->TexIndex = textureIndex;
+			s_Renderer2DData.QuadVertexBufferPtr->TilingFactor = tileFactor;
+			s_Renderer2DData.QuadVertexBufferPtr++;
+		}
 
 		s_Renderer2DData.QuadIndexCount += 6;
+
+		s_Renderer2DData.Stats.QuadCount++;
 
 		int samplers[s_Renderer2DData.MaxTextureSlots] = { 0 };
 		for (uint32_t i = 0; i < s_Renderer2DData.MaxTextureSlots; i++)
@@ -186,11 +202,5 @@ namespace FaragonEngine
 			samplers[i] = i;
 		}
 		s_Renderer2DData.QuadShader->SetIntArray("u_Textures", samplers, s_Renderer2DData.MaxTextureSlots);
-
-		glm::mat4 translate = glm::translate(glm::mat4(1.0f), position);
-		glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
-		glm::mat4 scale = glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-		glm::mat4 transform = translate * rotate * scale;
-		s_Renderer2DData.QuadShader->SetMat4("u_Transform", transform);
 	}
 }
