@@ -138,7 +138,7 @@ void Sandbox2D::OnImGuiRender()
 	ImGui::ColorEdit3("Clear Color", glm::value_ptr(m_ClearColor));
 	ImGui::Text("Draw Calls: %d", FaragonEngine::Renderer2D::GetStats().DrawCalls);
 
-	ImGui::Image(m_Framebuffer->GetColorAttachmentRendererID(), ImVec2{ 256.0f, 256.0f }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+	ImGui::Image(m_Framebuffer->GetColorAttachmentRendererID(), ImVec2{ 1920.0f, 1080.0f }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
 	ImGui::End();
 }

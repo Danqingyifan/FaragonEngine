@@ -2,7 +2,7 @@
 workspace "FaragonEngine"
    architecture "x64"
    configurations { "Debug", "Release", "Dist" }
-   startproject "Sandbox"
+   startproject "FaragonEngineEditor"
 
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
@@ -93,6 +93,58 @@ project "FaragonEngine"
       runtime "Release"
       optimize "on"
 
+project "FaragonEngineEditor"
+   location "FaragonEngineEditor"
+   kind "ConsoleApp"
+   language "C++"
+   cppdialect "C++20"
+   staticruntime "on"
+
+   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+   objdir ("bin-intermediate/" .. outputdir .. "/%{prj.name}")
+
+   files
+   {
+      "%{prj.name}/src/**.h",
+      "%{prj.name}/src/**.cpp"
+   }
+
+   includedirs
+   {
+      "FaragonEngine/src",
+      "FaragonEngine/vendor",
+      "%{IncludedDir.spdlog}",
+      "%{IncludedDir.glm}",
+   }
+   
+   links
+   {
+      "FaragonEngine"
+   }
+
+   filter "system:windows"
+
+      systemversion "latest"
+
+         defines
+         {
+            "FA_PLATFORM_WINDOWS"
+         }
+
+   filter "configurations:Debug"
+      defines "FA_DEBUG"
+      runtime "Debug"
+      symbols "on"
+
+   filter "configurations:Release"
+      defines "FA_RELEASE"
+      runtime "Release"
+      optimize "on"
+
+   filter "configurations:Dist"
+      defines "FA_DIST"
+      runtime "Release"
+      optimize "on"
 
 project "Sandbox"
    location "Sandbox"
