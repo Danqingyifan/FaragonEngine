@@ -10,6 +10,9 @@
     <Filter Include="src\FaragonEngine\Core">
       <UniqueIdentifier>{48D7A521-34D1-CE73-1D3E-658409D734E0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\FaragonEngine\Debug">
+      <UniqueIdentifier>{661B6D56-D252-B5ED-DB5C-19114713DCE6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\FaragonEngine\Events">
       <UniqueIdentifier>{D4DA9A27-C0FF-E9A7-E94A-CF37D5CEE8C5}</UniqueIdentifier>
     </Filter>
@@ -63,6 +66,9 @@
     <ClInclude Include="src\FaragonEngine\Application.h">
       <Filter>src\FaragonEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Core\Assert.h">
+      <Filter>src\FaragonEngine\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\FaragonEngine\Core\Core.h">
       <Filter>src\FaragonEngine\Core</Filter>
     </ClInclude>
@@ -83,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="src\FaragonEngine\Core\Window.h">
       <Filter>src\FaragonEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Debug\Instrumentor.h">
+      <Filter>src\FaragonEngine\Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\FaragonEngine\Events\ApplicationEvent.h">
       <Filter>src\FaragonEngine\Events</Filter>
@@ -120,6 +129,9 @@
     <ClInclude Include="src\FaragonEngine\Renderer\Camera.h">
       <Filter>src\FaragonEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\FaragonEngine\Renderer\Framebuffer.h">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\FaragonEngine\Renderer\GraphicsContext.h">
       <Filter>src\FaragonEngine\Renderer</Filter>
     </ClInclude>
@@ -148,6 +160,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
@@ -1425,7 +1440,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\FaragonEngine\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FaragonEngine\Application.cpp">
@@ -1458,6 +1472,9 @@
     <ClCompile Include="src\FaragonEngine\Renderer\Camera.cpp">
       <Filter>src\FaragonEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\FaragonEngine\Renderer\Framebuffer.cpp">
+      <Filter>src\FaragonEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\FaragonEngine\Renderer\RenderCommand.cpp">
       <Filter>src\FaragonEngine\Renderer</Filter>
     </ClCompile>
@@ -1483,6 +1500,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">

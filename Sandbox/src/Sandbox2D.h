@@ -17,6 +17,13 @@ private:
 	FaragonEngine::Ref<FaragonEngine::VertexArray> m_VertexArray;
 	// Textures
 	FaragonEngine::Ref<FaragonEngine::Texture2D> m_Texture;
+
+	FaragonEngine::Ref<FaragonEngine::Texture2D> m_SpriteSheet;
+	FaragonEngine::Ref<FaragonEngine::SubTexture2D> m_Tree;
+
+	//FrameBuffer
+	FaragonEngine::Ref<FaragonEngine::Framebuffer> m_Framebuffer;
+
 	// Camera
 	FaragonEngine::OrthographicCameraController m_OrthographicCameraController;
 	//Clear Color

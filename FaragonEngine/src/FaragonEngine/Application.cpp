@@ -31,6 +31,31 @@ namespace FaragonEngine
 		PushOverlay(m_ImGuiLayer);
 	}
 
+	void Application::Run()
+	{
+		while (m_Running)
+		{
+			float time = (float)glfwGetTime();
+			Timestep timestep = Timestep(time - m_LastFrameTime);
+			m_LastFrameTime = time;
+
+			for (Layer* layer : m_LayerStack)
+				layer->OnUpdate(timestep);
+
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
+
+			m_Window->OnUpdate();
+		}
+	}
+
+	void Application::Close()
+	{
+		m_Running = false;
+	}
+
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
@@ -70,25 +95,7 @@ namespace FaragonEngine
 		return false;
 	}
 
-	void Application::Run()
-	{
-		while (m_Running)
-		{
-			float time = (float)glfwGetTime();
-			Timestep timestep = Timestep(time - m_LastFrameTime);
-			m_LastFrameTime = time;
 
-			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate(timestep);
-
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
-			m_ImGuiLayer->End();
-
-			m_Window->OnUpdate();
-		}
-	}
 
 	Application::~Application()
 	{

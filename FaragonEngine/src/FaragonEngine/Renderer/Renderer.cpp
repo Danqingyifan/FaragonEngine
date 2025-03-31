@@ -145,7 +145,22 @@ namespace FaragonEngine
 		Flush();
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec3& position, const float rotation, const glm::vec2& size, const glm::vec4& color, const Ref<Texture2D>& texture2D, const float tileFactor)
+	void Renderer2D::DrawQuad(const glm::vec3& position, const float rotation, const glm::vec2& size, const glm::vec4& color)
+	{
+		DrawQuadHelper(position, rotation, size, color, WhiteTexture, 1.0f);
+	}
+	void Renderer2D::DrawQuad(const glm::vec3& position, const float rotation, const glm::vec2& size, const Ref<Texture2D>& texture2D, const float tileFactor, const glm::vec4& tintColor)
+	{
+		DrawQuadHelper(position, rotation, size, tintColor, texture2D, tileFactor);
+	}
+	void Renderer2D::DrawQuad(const glm::vec3& position, const float rotation, const glm::vec2& size, const Ref<SubTexture2D>& subTexture2D, const float tileFactor, const glm::vec4& tintColor)
+	{
+		DrawQuadHelper(position, rotation, size, tintColor, subTexture2D, tileFactor);
+	}
+
+
+	// Private
+	void Renderer2D::DrawQuadHelper(const glm::vec3& position, const float rotation, const glm::vec2& size, const glm::vec4& color, const Ref<Texture2D>& texture2D, const float tileFactor)
 	{
 		float textureIndex = 0.0f;
 
@@ -180,6 +195,68 @@ namespace FaragonEngine
 		glm::mat4 transform = translate * rotate * scale;
 
 		constexpr glm::vec2 textureCoords[] = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f }, { 0.0f, 1.0f } };
+		constexpr size_t quadVertexCount = 4;
+
+		for (size_t i = 0; i < quadVertexCount; i++)
+		{
+			s_Renderer2DData.QuadVertexBufferPtr->Position = transform * s_Renderer2DData.QuadVertexPositions[i];
+			s_Renderer2DData.QuadVertexBufferPtr->Color = color;
+			s_Renderer2DData.QuadVertexBufferPtr->TexCoord = textureCoords[i];
+			s_Renderer2DData.QuadVertexBufferPtr->TexIndex = textureIndex;
+			s_Renderer2DData.QuadVertexBufferPtr->TilingFactor = tileFactor;
+			s_Renderer2DData.QuadVertexBufferPtr++;
+		}
+
+		s_Renderer2DData.QuadIndexCount += 6;
+
+		s_Renderer2DData.Stats.QuadCount++;
+
+		int samplers[s_Renderer2DData.MaxTextureSlots] = { 0 };
+		for (uint32_t i = 0; i < s_Renderer2DData.MaxTextureSlots; i++)
+		{
+			samplers[i] = i;
+		}
+		s_Renderer2DData.QuadShader->SetIntArray("u_Textures", samplers, s_Renderer2DData.MaxTextureSlots);
+	}
+
+	void Renderer2D::DrawQuadHelper(const glm::vec3& position, const float rotation, const glm::vec2& size, const glm::vec4& color, const Ref<SubTexture2D>& subTexture2D, const float tileFactor)
+	{
+		float textureIndex = 0.0f;
+
+		Ref<Texture2D> texture2D = subTexture2D->GetTexture();
+		const glm::vec2* textureCoords = subTexture2D->GetTexCoords();
+
+		if (s_Renderer2DData.QuadIndexCount >= s_Renderer2DData.MaxIndices)
+		{
+			NextBatch();
+		}
+
+		for (uint32_t i = 1; i < s_Renderer2DData.TextureSlotIndex; i++)
+		{
+			if (s_Renderer2DData.TextureSlots[i]->GetRendererID() == texture2D->GetRendererID())
+			{
+				textureIndex = (float)i;
+				break;
+			}
+		}
+
+		if (textureIndex == 0.0f && texture2D->GetRendererID() != WhiteTexture->GetRendererID())
+		{
+			if (s_Renderer2DData.TextureSlotIndex >= Renderer2DData::MaxTextureSlots)
+			{
+				NextBatch();
+			}
+
+			textureIndex = (float)s_Renderer2DData.TextureSlotIndex;
+			s_Renderer2DData.TextureSlots[s_Renderer2DData.TextureSlotIndex] = texture2D;
+			s_Renderer2DData.TextureSlotIndex++;
+		}
+
+		glm::mat4 translate = glm::translate(glm::mat4(1.0f), position);
+		glm::mat4 rotate = glm::rotate(glm::mat4(1.0f), glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+		glm::mat4 transform = translate * rotate * scale;
+
 		constexpr size_t quadVertexCount = 4;
 
 		for (size_t i = 0; i < quadVertexCount; i++)

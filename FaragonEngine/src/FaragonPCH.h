@@ -11,7 +11,6 @@
 #include <vector>
 
 #include "FaragonEngine/Core/Core.h"
-#include "FaragonEngine/Core/Log.h"
 
 // Debug
 #include "FaragonEngine/Debug/Instrumentor.h"

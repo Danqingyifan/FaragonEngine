@@ -17,16 +17,21 @@
 #endif
 
 #ifdef FA_DEBUG
-	#define FARAGON_ENABLE_ASSERTS
+	#if defined(FA_PLATFORM_WINDOWS)
+		#define FA_DEBUGBREAK() __debugbreak()
+	#elif defined(FA_PLATFORM_LINUX)
+		#include <signal.h>
+		#define FA_DEBUGBREAK() raise(SIGTRAP)
+	#else
+		#error "Platform doesn't support debugbreak yet!"
+	#endif
+	#define FA_ENABLE_ASSERTS
+#else
+	#define FA_DEBUGBREAK()
 #endif
 
-#ifdef FARAGON_ENABLE_ASSERTS
-	#define FA_ASSERT(x, ...) { if(!(x)) { FA_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-	#define FA_CORE_ASSERT(x, ...) { if(!(x)) { FA_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-#else
-	#define FA_ASSERT(x, ...)
-	#define FA_CORE_ASSERT(x, ...)
-#endif
+#define FA_EXPAND_MACRO(x) x
+#define FA_STRINGIFY_MACRO(x) #x
 
 #define BIT(x) (1 << x)
 
@@ -50,3 +55,6 @@ namespace FaragonEngine
 		return std::make_unique<T>(std::forward<Args>(args)...);
 	}
 }	
+
+#include "FaragonEngine/Core/Log.h"
+#include "FaragonEngine/Core/Assert.h"

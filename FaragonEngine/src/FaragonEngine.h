@@ -28,6 +28,7 @@
 #include "FaragonEngine/Renderer/Shader.h"
 #include "FaragonEngine/Renderer/Texture.h"
 #include "FaragonEngine/Renderer/Buffer.h"
+#include "FaragonEngine/Renderer/Framebuffer.h"
 #include "FaragonEngine/Renderer/VertexArray.h"
 
 #include "FaragonEngine/Renderer/Camera.h"

@@ -6,9 +6,8 @@
 
 namespace FaragonEngine
 {
-	OrthographicCameraController::OrthographicCameraController(float aspectRatio, bool rotationEnabled)
+	OrthographicCameraController::OrthographicCameraController(float aspectRatio, float zoomLevel, bool rotationEnabled)
 	{
-		float zoomLevel = 1.0f;
 		m_Camera = OrthographicCamera(aspectRatio, zoomLevel, rotationEnabled);
 	}
 

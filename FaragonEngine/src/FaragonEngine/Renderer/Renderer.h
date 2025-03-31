@@ -42,11 +42,9 @@ namespace FaragonEngine
 		static void Flush();
 		static void EndScene();
 
-		static void DrawQuad(
-			const glm::vec3& position = { 0.0f, 0.0f, 0.0f }, const float rotation = 0.0f, const glm::vec2& size = { 1.0f, 1.0f },
-			const glm::vec4& color = { 1.0f, 1.0f , 1.0f, 1.0f },
-			const Ref<Texture2D>& texture2D = WhiteTexture, const float tileFactor = 1.0f
-		);
+		static void DrawQuad(const glm::vec3& position, const float rotation, const glm::vec2& size, const glm::vec4& color = glm::vec4(1.0f));
+		static void DrawQuad(const glm::vec3& position, const float rotation, const glm::vec2& size, const Ref<Texture2D>& texture2D, const float tileFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f));
+		static void DrawQuad(const glm::vec3& position, const float rotation, const glm::vec2& size, const Ref<SubTexture2D>& subTexture2D, const float tileFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f));
 
 		// Stats
 		struct Statistics
@@ -62,6 +60,18 @@ namespace FaragonEngine
 		inline static void ResetStats() { memset(&s_Renderer2DData.Stats, 0, sizeof(Statistics)); }
 
 	private:
+		static void DrawQuadHelper(
+			const glm::vec3& position, const float rotation, const glm::vec2& size,
+			const glm::vec4& color,
+			const Ref<Texture2D>& texture2D, const float tileFactor
+		);
+
+		static void DrawQuadHelper(
+			const glm::vec3& position, const float rotation, const glm::vec2& size,
+			const glm::vec4& color,
+			const Ref<SubTexture2D>& subTexture2D, const float tileFactor
+		);
+
 		struct QuadVertex
 		{
 			glm::vec3 Position;

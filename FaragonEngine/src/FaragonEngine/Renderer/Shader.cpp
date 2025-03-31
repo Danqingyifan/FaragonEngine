@@ -24,7 +24,7 @@ namespace FaragonEngine
 
 	FaragonEngine::Ref<FaragonEngine::Shader> ShaderLibrary::Get(const std::string& name)
 	{
-		FA_CORE_ASSERT(Exists(name), "{0} Shader not found in library!", name);
+		FA_CORE_ASSERT(Exists(name), "{0} Shader not found in library!");
 		return m_Shaders[name];
 	}
 

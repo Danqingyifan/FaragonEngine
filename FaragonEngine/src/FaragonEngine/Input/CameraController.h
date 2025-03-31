@@ -11,9 +11,9 @@ namespace FaragonEngine
 	{
 	public:
 		OrthographicCameraController() = default;
-		OrthographicCameraController(float aspectRatio, bool rotationEnabled = false);
+		OrthographicCameraController(float aspectRatio, float zoomLevel = 1.0f, bool rotationEnabled = false);
 		~OrthographicCameraController() = default;
-		
+
 		void OnUpdate(float deltaTime);
 		void OnEvent(Event& e);
 

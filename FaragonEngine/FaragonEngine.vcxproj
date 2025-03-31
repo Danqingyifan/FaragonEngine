@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="src\FaragonEngine.h" />
     <ClInclude Include="src\FaragonEngine\Application.h" />
+    <ClInclude Include="src\FaragonEngine\Core\Assert.h" />
     <ClInclude Include="src\FaragonEngine\Core\Core.h" />
     <ClInclude Include="src\FaragonEngine\Core\EntryPoint.h" />
     <ClInclude Include="src\FaragonEngine\Core\Layer.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="src\FaragonEngine\Input\MouseButtonCodes.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\Camera.h" />
+    <ClInclude Include="src\FaragonEngine\Renderer\Framebuffer.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\FaragonEngine\Renderer\Renderer.h" />
@@ -175,6 +177,7 @@
     <ClInclude Include="src\FaragonPCH.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture2D.h" />
@@ -612,6 +615,7 @@
     <ClCompile Include="src\FaragonEngine\Input\CameraController.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\Buffer.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\Camera.cpp" />
+    <ClCompile Include="src\FaragonEngine\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\FaragonEngine\Renderer\RendererAPI.cpp" />
@@ -623,6 +627,7 @@
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture2D.cpp" />
