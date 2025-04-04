@@ -7,7 +7,7 @@
 
 namespace FaragonEngine
 {
-	class FARAGON_API ImGuiLayer : public Layer
+	class ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();
@@ -19,19 +19,14 @@ namespace FaragonEngine
 		void Begin();
 		void End();
 
-		void OnEvent(Event& event) override;
-	private:
-		bool  OnMouseButtonPressedEvent(MouseButtonPressedEvent& event);
-		bool  OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& event);
-		bool  OnMouseMovedEvent(MouseMovedEvent& event);
-		bool  OnMouseScrolledEvent(MouseScrolledEvent& event);
-		bool  OnKeyPressedEvent(KeyPressedEvent& event);
-		bool  OnKeyReleasedEvent(KeyReleasedEvent& event);
-		bool  OnKeyTypedEvent(KeyTypedEvent& event);
-		bool  OnWindowResizeEvent(WindowResizeEvent& event);
+		void OnEvent(Event& e) override;
 
+		void BlockEvents(bool block) { m_BlockEvents = block; }
+	private:
 		enum ImGuiKey MapKeyToImGuiKey(int keycode,int scancode = 0);
 	private:
 		float m_Time = 0.0f;
+
+		bool m_BlockEvents = true;
 	};
 }

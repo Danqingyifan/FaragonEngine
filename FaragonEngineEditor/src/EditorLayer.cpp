@@ -43,7 +43,11 @@ namespace FaragonEngine
 
 		{
 			FA_PROFILE_SCOPE("CameraController::OnUpdate");
-			m_OrthographicCameraController.OnUpdate(deltaTime);
+
+			if (m_ViewportFocused)
+			{
+				m_OrthographicCameraController.OnUpdate(deltaTime);
+			}
 		}
 
 		Renderer2D::ResetStats();
@@ -78,6 +82,7 @@ namespace FaragonEngine
 
 	void EditorLayer::OnImGuiRender()
 	{
+		// DockingSpace
 		static bool dockSpaceOpen = true;
 		static bool opt_fullscreen = true;
 		static bool opt_padding = false;
@@ -132,16 +137,43 @@ namespace FaragonEngine
 			ImGui::EndMenuBar();
 		}
 
-		ImGui::End();
-
-
+		// Settings
 		ImGui::Begin("Settings");
 
 		ImGui::ColorEdit3("Clear Color", glm::value_ptr(m_ClearColor));
 		ImGui::Text("Draw Calls: %d", Renderer2D::GetStats().DrawCalls);
-
-		ImGui::Image(m_Framebuffer->GetColorAttachmentRendererID(), ImVec2{ 1920.0f, 1080.0f }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+		ImGui::InputFloat("text", &testText);
 
 		ImGui::End();
+		// Settings End
+
+		// Viewport
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+		ImGui::Begin("Viewport");
+
+		m_ViewportFocused = ImGui::IsWindowFocused();
+		m_ViewportHovered = ImGui::IsWindowHovered();
+
+		FA_INFO("Focused: {0}", m_ViewportFocused);
+		FA_INFO("Hovered: {0}", m_ViewportHovered);
+
+		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+
+		ImVec2 viewportSize = ImGui::GetContentRegionAvail();
+		if (m_ViewportSize != (*((glm::vec2*)&viewportSize)))
+		{
+			m_ViewportSize = { viewportSize.x, viewportSize.y };
+			m_Framebuffer->Resize((uint32_t)viewportSize.x, (uint32_t)viewportSize.y);
+			m_OrthographicCameraController.GetCamera().SetAspectRatio(viewportSize.x / viewportSize.y);
+		}
+
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		ImGui::Image(textureID, ImVec2{ viewportSize.x, viewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+		ImGui::End();
+		ImGui::PopStyleVar();
+		// Viewport End
+
+		ImGui::End();
+		// Dockspace End
 	}
 }

@@ -120,7 +120,7 @@
     <ClInclude Include="src\FaragonEngine\Input\KeyCodes.h">
       <Filter>src\FaragonEngine\Input</Filter>
     </ClInclude>
-    <ClInclude Include="src\FaragonEngine\Input\MouseButtonCodes.h">
+    <ClInclude Include="src\FaragonEngine\Input\MouseCodes.h">
       <Filter>src\FaragonEngine\Input</Filter>
     </ClInclude>
     <ClInclude Include="src\FaragonEngine\Renderer\Buffer.h">
@@ -176,9 +176,6 @@
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>

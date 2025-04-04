@@ -5,7 +5,7 @@
 
 namespace FaragonEngine
 {
-	class FARAGON_API Layer
+	class Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer") : m_DebugName(name) {}

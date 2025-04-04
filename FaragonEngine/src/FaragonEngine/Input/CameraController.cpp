@@ -17,20 +17,20 @@ namespace FaragonEngine
 		glm::vec3 m_CameraPosition = m_Camera.GetPosition();
 		float m_CameraMoveSpeed = m_Camera.GetCameraMoveSpeed();
 
-		if (FaragonEngine::Input::IsKeyPressed(FA_KEY_W))
+		if (FaragonEngine::Input::IsKeyPressed(Key::W))
 		{
 			m_CameraPosition.y += m_CameraMoveSpeed * deltaTime;
 		}
-		else if (FaragonEngine::Input::IsKeyPressed(FA_KEY_S))
+		else if (FaragonEngine::Input::IsKeyPressed(Key::S))
 		{
 			m_CameraPosition.y -= m_CameraMoveSpeed * deltaTime;
 		}
 
-		if (FaragonEngine::Input::IsKeyPressed(FA_KEY_A))
+		if (FaragonEngine::Input::IsKeyPressed(Key::A))
 		{
 			m_CameraPosition.x -= m_CameraMoveSpeed * deltaTime;
 		}
-		else if (FaragonEngine::Input::IsKeyPressed(FA_KEY_D))
+		else if (FaragonEngine::Input::IsKeyPressed(Key::D))
 		{
 			m_CameraPosition.x += m_CameraMoveSpeed * deltaTime;
 		}
@@ -43,11 +43,11 @@ namespace FaragonEngine
 			float m_CameraRotation = m_Camera.GetRotation();
 			float m_CameraRotationSpeed = m_Camera.GetCameraRotationSpeed();
 
-			if (FaragonEngine::Input::IsKeyPressed(FA_KEY_Q))
+			if (FaragonEngine::Input::IsKeyPressed(Key::Q))
 			{
 				m_CameraRotation += m_CameraRotationSpeed * deltaTime;
 			}
-			else if (FaragonEngine::Input::IsKeyPressed(FA_KEY_E))
+			else if (FaragonEngine::Input::IsKeyPressed(Key::E))
 			{
 				m_CameraRotation -= m_CameraRotationSpeed * deltaTime;
 			}

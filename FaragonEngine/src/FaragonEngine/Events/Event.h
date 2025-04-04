@@ -38,8 +38,9 @@ namespace FaragonEngine
 		virtual std::string ToString() const { return GetTypeName(); }
 
 		inline bool IsInCategory(EventCategory eventCategory) { return GetCategoryFlags() & eventCategory; }
-
-		inline bool GetIsHandled() { return m_Handled; }
+		
+		inline void SetHandled(bool handled) { m_Handled = handled; }
+		inline bool IsHandled() { return m_Handled; }
 	protected:
 		bool m_Handled = false;
 	};

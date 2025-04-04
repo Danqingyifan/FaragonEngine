@@ -62,13 +62,12 @@ namespace FaragonEngine
 		dispatcher.Dispatch<WindowCloseEvent>(FA_BIND_EVENT_FN(Application::OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(FA_BIND_EVENT_FN(Application::OnWindowResize));
 
-		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); it++)
 		{
-			(*--it)->OnEvent(e);
-			if (e.GetIsHandled())
+			if (e.IsHandled())
 				break;
+			(*it)->OnEvent(e);
 		}
-
 	}
 
 	void Application::PushLayer(Layer* layer)

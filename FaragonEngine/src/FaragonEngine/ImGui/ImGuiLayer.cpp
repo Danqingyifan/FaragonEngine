@@ -83,89 +83,17 @@ namespace FaragonEngine
 		}
 	}
 
-	void ImGuiLayer::OnEvent(Event& event)
+	void ImGuiLayer::OnEvent(Event& e)
 	{
-		EventDispatcher dispatcher(event);
-		dispatcher.Dispatch<MouseButtonPressedEvent>(FA_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonPressedEvent));
-		dispatcher.Dispatch<MouseButtonReleasedEvent>(FA_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonReleasedEvent));
-		dispatcher.Dispatch<MouseMovedEvent>(FA_BIND_EVENT_FN(ImGuiLayer::OnMouseMovedEvent));
-		dispatcher.Dispatch<MouseScrolledEvent>(FA_BIND_EVENT_FN(ImGuiLayer::OnMouseScrolledEvent));
-		dispatcher.Dispatch<KeyPressedEvent>(FA_BIND_EVENT_FN(ImGuiLayer::OnKeyPressedEvent));
-		dispatcher.Dispatch<KeyReleasedEvent>(FA_BIND_EVENT_FN(ImGuiLayer::OnKeyReleasedEvent));
-		dispatcher.Dispatch<KeyTypedEvent>(FA_BIND_EVENT_FN(ImGuiLayer::OnKeyTypedEvent));
-		dispatcher.Dispatch<WindowResizeEvent>(FA_BIND_EVENT_FN(ImGuiLayer::OnWindowResizeEvent));
-	}
+		if (m_BlockEvents)
+		{
+			ImGuiIO& io = ImGui::GetIO();
 
-	bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& event)
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		io.MouseDown[event.GetButton()] = true;
-		return false;
-	}
+			bool handled = e.IsHandled();
 
-	bool ImGuiLayer::OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& event)
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		io.MouseDown[event.GetButton()] = false;
-		return false;
-	}
-
-	bool ImGuiLayer::OnMouseMovedEvent(MouseMovedEvent& event)
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		io.MousePos = ImVec2(event.GetX(), event.GetY());
-		return false;
-	}
-
-	bool ImGuiLayer::OnMouseScrolledEvent(MouseScrolledEvent& event)
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		io.MouseWheelH += event.GetXOffset();
-		io.MouseWheel += event.GetYOffset();
-		return false;
-	}
-
-	bool ImGuiLayer::OnKeyPressedEvent(KeyPressedEvent& event)
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		ImGuiKey imguiKey = MapKeyToImGuiKey(event.GetKeyCode());
-		io.AddKeyEvent(imguiKey, true);
-
-		GLFWwindow* window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		// Mods
-		io.AddKeyEvent(ImGuiMod_Ctrl, (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS) || (glfwGetKey(window, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS));
-		io.AddKeyEvent(ImGuiMod_Shift, (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) || (glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS));
-		io.AddKeyEvent(ImGuiMod_Alt, (glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) || (glfwGetKey(window, GLFW_KEY_RIGHT_ALT) == GLFW_PRESS));
-		io.AddKeyEvent(ImGuiMod_Super, (glfwGetKey(window, GLFW_KEY_LEFT_SUPER) == GLFW_PRESS) || (glfwGetKey(window, GLFW_KEY_RIGHT_SUPER) == GLFW_PRESS));
-		return false;
-	}
-
-	bool ImGuiLayer::OnKeyReleasedEvent(KeyReleasedEvent& event)
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		ImGuiKey imguiKey = MapKeyToImGuiKey(event.GetKeyCode());
-		io.AddKeyEvent(imguiKey, false);
-
-		return false;
-	}
-
-	bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent& event)
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		int keycode = event.GetKeyCode();
-		if (keycode > 0 && keycode < 0x10000)
-			io.AddInputCharacter((unsigned short)keycode);
-
-		return false;
-	}
-
-	bool ImGuiLayer::OnWindowResizeEvent(WindowResizeEvent& event)
-	{
-		ImGuiIO& io = ImGui::GetIO();
-		io.DisplaySize = ImVec2((float)event.GetWidth(), (float)event.GetHeight());
-		io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
-		glViewport(0, 0, event.GetWidth(), event.GetHeight());
-		return false;
+			e.SetHandled(handled |= e.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse);
+			e.SetHandled(handled |= e.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard);
+		}
 	}
 
 	ImGuiKey ImGuiLayer::MapKeyToImGuiKey(int keycode, int scancode)

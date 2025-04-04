@@ -1,5 +1,4 @@
 #pragma once
-
 // -----------Core--------------
 
 #include "FaragonEngine/Core/Core.h"
@@ -17,7 +16,7 @@
 
 #include "FaragonEngine/Input/Input.h"
 #include "FaragonEngine/Input/KeyCodes.h"
-#include "FaragonEngine/Input/MouseButtonCodes.h"
+#include "FaragonEngine/Input/MouseCodes.h"
 #include "FaragonEngine/Input/CameraController.h"
 
 // -----------Renderer--------------
