@@ -15,6 +15,7 @@ IncludedDir["spdlog"] = "FaragonEngine/vendor/spdlog/include"
 IncludedDir["ImGui"] = "FaragonEngine/vendor/imgui"
 IncludedDir["glm"] = "FaragonEngine/vendor/glm"
 IncludedDir["stb_image"] = "FaragonEngine/vendor/stb_image"
+IncludedDir["entt"] = "FaragonEngine/vendor/entt/include"
 
 group "Dependencies"
    include "FaragonEngine/vendor/GLFW"
@@ -42,7 +43,7 @@ project "FaragonEngine"
       "%{prj.name}/vendor/glm/**.hpp",
       "%{prj.name}/vendor/glm/**.inl",
       "%{prj.name}/vendor/stb_image/**.h",
-      "%{prj.name}/vendor/stb_image/**.cpp"
+      "%{prj.name}/vendor/stb_image/**.cpp",
    }
 
    defines
@@ -59,6 +60,7 @@ project "FaragonEngine"
       "%{IncludedDir.spdlog}",
       "%{IncludedDir.glm}",
       "%{IncludedDir.stb_image}",
+      "%{IncludedDir.entt}", 
    }
 
    links
@@ -115,6 +117,7 @@ project "FaragonEngineEditor"
       "FaragonEngine/vendor",
       "%{IncludedDir.spdlog}",
       "%{IncludedDir.glm}",
+      "%{IncludedDir.entt}",
    }
    
    links
@@ -168,6 +171,7 @@ project "Sandbox"
       "FaragonEngine/vendor",
       "%{IncludedDir.spdlog}",
       "%{IncludedDir.glm}",
+      "%{IncludedDir.entt}",
    }
    
    links
