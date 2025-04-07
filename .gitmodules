@@ -13,3 +13,6 @@
 [submodule "FaragonEngine/vendor/yaml-cpp"]
 	path = FaragonEngine/vendor/yaml-cpp
 	url = https://github.com/Danqingyifan/yaml-cpp
+[submodule "FaragonEngine/vendor/ImGuizmo"]
+	path = FaragonEngine/vendor/ImGuizmo
+	url = https://github.com/Danqingyifan/ImGuizmo
